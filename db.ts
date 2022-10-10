@@ -21,6 +21,9 @@ export class db {
 
     async initializeIfNeeded() {
         const sql = `
+
+        drop table ItemTypes;
+
       CREATE TABLE IF NOT EXISTS ItemTypes (
         typeID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
         name TEXT NOT NULL
@@ -90,8 +93,6 @@ export class db {
 
             return new itemDBModel(i, new typeDBModel(typesMap.get(i.type)!, i.type), cats);
         });
-
-        
     }
 
     async getTypesMap(items:itemModel[]) {
@@ -107,10 +108,10 @@ export class db {
 
         let typesMap = await this.getDbPairs("ItemTypes", "typeID", types);
 
-        const typesToAdd = types.filter((t) => !typesMap.has(t)).map((t) => new typeDBModel(localTypesMap.get(t)!, t));
+        const typesToAdd = Array.from(new Set(types.filter((t) => !typesMap.has(t)).map((t) => new typeDBModel(localTypesMap.get(t)!, t))));
 
         let sql = `
-        insert into ItemTypes (name, typeID) values
+        insert or replace into ItemTypes (name, typeID) values
         ${typesToAdd.map((t) => `('${t.name}', ${t.typeID})`).join('\r\n,')}
         `
         await this._database?.run(sql);
@@ -119,7 +120,6 @@ export class db {
 
         return typesMap;
     }
-
     
     async getCategoriesMap(items:itemModel[]) {
         
@@ -137,7 +137,7 @@ export class db {
         const catsToAdd = Array.from(localCatMaps.entries()).filter((t) => !catsMap.has(t[0])).map((t) => new catDBModel(t[1], t[0]));
 
         let sql = `
-        insert into ItemCategories (name, catID) values
+        insert or replace into ItemCategories (name, catID) values
         ${catsToAdd.map((t) => `('${t.name}', ${t.catID})`).join('\r\n,')}
         `
         await this._database?.run(sql);
@@ -145,7 +145,7 @@ export class db {
         const secondaryCatsToAdd = Array.from(new Set(items.map((i) => i.cat2).filter((c) => !catsMap.has(c))).entries());
 
         sql = `
-        insert into ItemCategories (name) values
+        insert or replace into ItemCategories (name) values
         ${secondaryCatsToAdd.map((t) => `('${t}')`).join('\r\n,')}
         `;
 

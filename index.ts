@@ -19,5 +19,7 @@ app.listen(3000, async function() {
 
     await database.initializeIfNeeded();
 
+    await database.parseJsonIntoDB("halloween_items.json");
+
     console.log("server is running on port 3000");
 });
