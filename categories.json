@@ -1,0 +1,318 @@
+{
+    "categories" : [
+        {
+            "catId" : 0,
+            "catName" : "t-shirt blanks",
+            "subcats" : [
+                {
+                    "subCatID" : 0,
+                    "subcatName" : ""
+                }
+            ]
+        },
+        {
+            "catId" : 1,
+            "catName" : "weather",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : ""
+                }
+            ]
+        },
+        {
+            "catId" : 2,
+            "catName" : "space and dreams",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : ""
+                }
+            ]
+        },
+        {
+            "catId" : 3,
+            "catName" : "recreation",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "music"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "picnic"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "camping"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "school"
+                }
+            ]
+        },
+        {
+            "catId" : 4,
+            "catName" : "food",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "sweets"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "funfood"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "breakfast"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "beverages"
+                }
+            ]
+        },
+        {
+            "catId" : 5,
+            "catName" : "occasions",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "birthday"
+                }
+            ]
+        },
+        {
+            "catId" : 6,
+            "catName" : "holidays",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "new years"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "st valentines day"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "mardi gras"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "st patricks day"
+                },
+                {
+                    "subCatID" : 5,
+                    "subcatName" : "easter"
+                },
+                {
+                    "subCatID" : 6,
+                    "subcatName" : "earth day"
+                },
+                {
+                    "subCatID" : 7,
+                    "subcatName" : "americana"
+                },
+                {
+                    "subCatID" : 8,
+                    "subcatName" : "halloween"
+                },
+                {
+                    "subCatID" : 9,
+                    "subcatName" : "thanksgiving"
+                },
+                {
+                    "subCatID" : 10,
+                    "subcatName" : "christmas"
+                }
+            ]
+        },
+        {
+            "catId" : 7,
+            "catName" : "seasons",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "winter"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "spring"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "summer"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "autumn"
+                }
+            ]
+        },
+        {
+            "catId" : 8,
+            "catName" : "animals",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "furry friends"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "ocean friends"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "forest friends"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "lake friends"
+                },
+                {
+                    "subCatID" : 5,
+                    "subcatName" : "winter friends"
+                },
+                {
+                    "subCatID" : 6,
+                    "subcatName" : "farm friends"
+                },
+                {
+                    "subCatID" : 7,
+                    "subcatName" : "zoo friends"
+                }
+            ]
+        },
+        {
+            "catId" : 9,
+            "catName" : "video games",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "misc"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "space beans"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "plumbers"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "hedgehog"
+                },
+                {
+                    "subCatID" : 5,
+                    "subcatName" : "NiGHTS"
+                }
+            ]
+        },
+        {
+            "catId" : 10,
+            "catName" : "other",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "retired kids"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "retro vintage"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "sailor moon"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "jem"
+                }
+            ]
+        },
+        {
+            "catId" : 11,
+            "catName" : "textiles",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "wallets"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "quilts pillows"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "misc bags"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "sweets bags"
+                },
+                {
+                    "subCatID" : 5,
+                    "subcatName" : "space bags"
+                },
+                {
+                    "subCatID" : 6,
+                    "subcatName" : "gamer bags"
+                }
+            ]
+        },
+        {
+            "catId" : 12,
+            "catName" : "bracelets",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "pony bead bracelets"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "seed bead bracelets"
+                }
+            ]
+        },
+        {
+            "catId" : 13,
+            "catName" : "scarlet skye",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : "ss books"
+                },
+                {
+                    "subCatID" : 2,
+                    "subcatName" : "ss earrings"
+                },
+                {
+                    "subCatID" : 3,
+                    "subcatName" : "ss buttons"
+                },
+                {
+                    "subCatID" : 4,
+                    "subcatName" : "ss spiralbounds"
+                },
+                {
+                    "subCatID" : 5,
+                    "subcatName" : "ss bookmarks"
+                }
+            ]
+        },
+        {
+            "catId" : 14,
+            "catName" : "gift bags",
+            "subcats" : [
+                {
+                    "subCatID" : 1,
+                    "subcatName" : ""
+                }
+            ]
+        }
+    ]
+}

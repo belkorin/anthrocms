@@ -1,6 +1,20 @@
-import express, { Express, Request, Response } from 'express';
-import sqlite3 from 'sqlite3'
-import { db } from './db';
+import express from 'express';
+import { Express, Request, Response } from 'express';
+import { myDataSource } from "./datasource.js";
+import { jsonImport } from './jsonImport.js';
+//import { db } from './db';
+
+// establish database connection
+myDataSource
+    .initialize()
+    .then(async () => {
+        console.log("Data Source has been initialized!");
+
+        await jsonImport.initializeCategories(myDataSource);
+    })
+    .catch((err) => {
+        console.error("Error during Data Source initialization:", err)
+    })
 
 // Instantiating the Express object.
 const app: Express = express();
@@ -13,13 +27,11 @@ app.get("/", function(req: Request, res: Response) {
 
 // Set app to listen on port 3000
 app.listen(3000, async function() {
-    console.log("starting db");
+    // const database = await db.openDb(sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
 
-    const database = await db.openDb(sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
+    // await database.initializeIfNeeded();
 
-    await database.initializeIfNeeded();
-
-    await database.parseJsonIntoDB("halloween_items.json");
+    // await database.parseJsonIntoDB("halloween_items.json");
 
     console.log("server is running on port 3000");
 });

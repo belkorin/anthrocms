@@ -1,0 +1,155 @@
+{
+					"Item 06-08-001": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-001-thumb.png",
+						"Name": "Pumpkin Coffee earrings",
+						"Description": "A pair of pumpkin spice coffee cup earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-001",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-002": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-002-thumb.png",
+						"Name": "Candy Corn earrings",
+						"Description": "A pair of candy corn earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-002",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-003": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-003-thumb.png",
+						"Name": "Pumpkin earrings",
+						"Description": "A pair of pumpkin earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-003",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-004": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-004-1-thumb.png",
+						"Name": "Glow Pumpkin earrings",
+						"Description": "A pair of glow-in-the-dark pumpkin earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-004",
+						"Type": "earrings",
+						"Cats": [ "halloween", "glow" ]
+					},
+					"Item 06-08-005": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-005-thumb.png",
+						"Name": "Witchy Owl earrings",
+						"Description": "A pair of witchy owl earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-005",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-006": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-006-1-thumb.png",
+						"Name": "Glow Witchy Owl earrings",
+						"Description": "A pair of glow-in-the-dark witchy owl earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-006",
+						"Type": "earrings",
+						"Cats": [ "halloween", "glow" ]
+					},
+					"Item 06-08-007": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-007-thumb.png",
+						"Name": "Witch earrings",
+						"Description": "A pair of cutsie witch earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-007",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-008": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-008-thumb.png",
+						"Name": "Spider earrings",
+						"Description": "A pair of spider earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-008",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-009": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-009-1-thumb.png",
+						"Name": "Glow Spider earrings",
+						"Description": "A pair of glow-in-the-dark spider earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-009",
+						"Type": "earrings",
+						"Cats": [ "halloween", "glow" ]
+					},
+					"Item 06-08-010": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-010-thumb.png",
+						"Name": "Witchy Cat earrings",
+						"Description": "A pair of witchy cat earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-010",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-011": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-011-1-thumb.png",
+						"Name": "Glow Witchy Cat earrings",
+						"Description": "A pair of glow-in-the-dark witchy cat earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-011",
+						"Type": "earrings",
+						"Cats": [ "halloween", "glow" ]
+					},
+					"Item 06-08-012": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-012-thumb.png",
+						"Name": "Pumpkin Cat earrings",
+						"Description": "A pair of pumpkin cat earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-012",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-013": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-013-1-thumb.png",
+						"Name": "Glow Pumpkin Cat earrings",
+						"Description": "A pair of glow-in-the-dark pumpkin cat earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-013",
+						"Type": "earrings",
+						"Cats": [ "halloween", "glow" ]
+					},
+					"Item 06-08-014": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-014-thumb.png",
+						"Name": "Ghost earrings",
+						"Description": "A pair of ghost earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-014",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-015": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-015-1-thumb.png",
+						"Name": "Glow Ghost Pumpkin Coffee earrings",
+						"Description": "A pair of glow-in-the-dark ghost earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-015",
+						"Type": "earrings",
+						"Cats": [ "halloween", "glow" ]
+					},
+					"Item 06-08-016": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-016-thumb.png",
+						"Name": "Dark Bat earrings",
+						"Description": "A pair of dark-colored bat earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-016",
+						"Type": "earrings",
+						"Cat": "halloween"
+					},
+					"Item 06-08-017": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-08/06-08-017-thumb.png",
+						"Name": "Light Bat earrings",
+						"Description": "A pair of light-colored bat earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-08-017",
+						"Type": "earrings",
+						"Cat": "halloween"
+					}
+				}
