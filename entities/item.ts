@@ -1,8 +1,8 @@
 import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm"
-import { itemCategory } from "./itemCategory.js";
-import { itemSubCategory } from "./itemSubCategory.js";
-import { itemTag } from "./itemTag.js";
-import { itemType } from "./itemType.js";
+import { itemCategory } from "./itemCategory";
+import { itemSubCategory } from "./itemSubCategory";
+import { itemTag } from "./itemTag";
+import { itemType } from "./itemType";
 
 @Entity()
 export class item {
@@ -33,8 +33,7 @@ export class item {
     itemSubCategory: itemSubCategory;
 
     @ManyToMany(() => itemTag, (tag) => tag.items)
-    @JoinTable()
-    itemTags: itemTag[];
+    itemTags?: itemTag[];
 
     
     public constructor(init?:Partial<item>) {

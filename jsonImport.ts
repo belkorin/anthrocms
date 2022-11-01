@@ -1,20 +1,20 @@
 import * as fsPromises from 'fs/promises'
 import { DataSource } from 'typeorm';
-import { item } from './entities/item.js';
-import { itemCategory } from './entities/itemCategory.js';
-import { itemSubCategory } from './entities/itemSubCategory.js';
-import { itemTag } from './entities/itemTag.js';
-import { itemType } from './entities/itemType.js';
+import { item } from './entities/item';
+import { itemCategory } from './entities/itemCategory';
+import { itemSubCategory } from './entities/itemSubCategory';
+import { itemTag } from './entities/itemTag';
+import { itemType } from './entities/itemType';
 
 export class jsonImport {
 
     static async initializeCategories(db : DataSource) {
         const json = (await fsPromises.readFile("categories.json")).toString(); 
         const obj = JSON.parse(json);
-        const categories = Object.keys(obj).map((k) => new itemCategory({
-            catID: obj[k].catID,
-            catName: obj[k].catName,
-            subCategories: obj[k].subcats.map((s) => new itemSubCategory({subCatID: s.subCatID, subCatName: s.subCatName}))
+        const categories = obj.categories.map((k) => new itemCategory({
+            catID: k.catID,
+            catName: k.catName,
+            subCategories: k.subcats.map((s) => new itemSubCategory({subCatID: s.subCatID, subCatName: s.subcatName}))
         }));
 
         const categoriesTable = db.getRepository(itemCategory);
@@ -33,7 +33,8 @@ export class jsonImport {
         var knownItemTypes = await itemTypesTable.find();
 
         const toBeInsertedTypes = itemTypes
-                                    .filter((t) => knownItemTypes.findIndex((dbType) => dbType.typeName.toUpperCase() == t) == -1)
+                                    .filter((t) => knownItemTypes.findIndex(
+                                        (dbType) => dbType.typeName.toUpperCase() == t.toUpperCase()) == -1)
                                     .map((t) => new itemType({typeName: t}));
         if(toBeInsertedTypes.length > 0) {
             const result = await itemTypesTable.insert(toBeInsertedTypes);
@@ -44,15 +45,24 @@ export class jsonImport {
         var knownItemTags = await itemTagsTable.find();
 
         const toBeInsertedTags = itemTags
-                                    .filter((t) => knownItemTags.findIndex((dbType) => dbType.tagName.toUpperCase() == t) == -1)
+                                    .filter((t) => t != undefined && knownItemTags.findIndex(
+                                        (dbType) => dbType.tagName.toUpperCase() == t.toUpperCase()) == -1)
                                     .map((t) => new itemTag({tagName: t}));
         if(toBeInsertedTags.length > 0) {
             const result = await itemTagsTable.insert(toBeInsertedTags);
             knownItemTags = await itemTagsTable.find();
         }
 
-        var typeNameToTypeMap = new Map<string, itemType>(knownItemTypes.map((t) => [t.typeName, t]));
-        var tagNameToTagMap = new Map<string, itemTag>(knownItemTags.map((t) => [t.tagName, t]));
+        const typeNameToTypeMap = new Map<string, itemType>(knownItemTypes.map((t) => [t.typeName, t]));
+        const tagNameToTagMap = new Map<string, itemTag>(knownItemTags.map((t) => [t.tagName, t]));
+
+        const categories = await db.getRepository(itemCategory).find();
+        const subcategories = await db.getRepository(itemSubCategory).find();
+
+        const catMap = new Map(categories.map((c) => [c.catID, c]));
+        const subMap = new Map(subcategories.map((s) => [s.subCatID, s]));
+
+        const itemsTable = db.getRepository(item);
 
         const newItems = items.map((i) => new item({
             itemCategoryID : i.catA,
@@ -61,12 +71,14 @@ export class jsonImport {
             itemID : i.itemId,
             name : i.name,
             shortDescription : i.description,
+            longDescription : "",
             price : i.price,
-            itemType : typeNameToTypeMap[i.type],
-            itemTags : i.cats.map((c) => tagNameToTagMap[c])
+            itemType : typeNameToTypeMap.get(i.type),
+            itemTags : i.cats.length > 0 ? i.cats.map((c) => tagNameToTagMap.get(c)) : null,
+            itemCategory : catMap.get(i.catA),
+            itemSubCategory : subMap.get(i.catB),
         }));
 
-        const itemsTable = db.getRepository(item);
         await itemsTable.save(newItems);
 
         const sample = await itemsTable.find({take: 10});
@@ -94,7 +106,9 @@ class itemModel {
         this.price = item.price;
         this.type = item.Type;
         this.cat = item.Cat;
-        this.cats = (item.Cats ?? new Array<string>()).push(item.Cat);
+        this.cats = (item.Cats ?? new Array<string>());
+        if(item.Cat != undefined)
+            this.cats.push(item.Cat);
 
         let idParts = id.split(' ')[1].split('-');
         this.catA = Number.parseInt(idParts[0]);

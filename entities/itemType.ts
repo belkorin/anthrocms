@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from "typeorm"
-import { item } from "./item.js"
+import { item } from "./item";
 
 @Entity()
 export class itemType {

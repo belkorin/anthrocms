@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "aaaa",
+            "database": "${workspaceFolder:SimpleExpressCMS}/db.sqlite"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}

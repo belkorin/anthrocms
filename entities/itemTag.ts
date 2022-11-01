@@ -1,5 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToMany } from "typeorm"
-import { item } from "./item.js"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToMany, JoinTable } from "typeorm"
+import { item } from "./item";
 
 @Entity()
 export class itemTag {
@@ -10,6 +10,7 @@ export class itemTag {
     tagName: string
 
     @ManyToMany(() => item, (item) => item.itemTags)
+    @JoinTable()
     items: item[];
 
     public constructor(init?:Partial<itemTag>) {
