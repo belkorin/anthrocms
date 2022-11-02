@@ -1,0 +1,11 @@
+{
+    "banner" : "title_graphic_harvest.png",
+    "bannerAlt" : "harvest Title Graphic",
+    "page" : "harvest",
+    "gridItemClass" : "harvest",
+    "pageTheme" : "harvest",
+    "pageType" : "products",
+    "categories" : ["06-09"],
+    "itemTypes" : [],
+    "tags" : []
+}

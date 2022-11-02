@@ -1,0 +1,954 @@
+body {background: #ccccff repeat; font-family: 'Times New Roman';}
+div.left {padding: 10px 10px 10px 10px; margin: 20px 0px 0px 0px; width: 130px; background-color: #ccccff; float: left; border: 0px solid;}
+div.right {padding: 10px 10px 10px 10px; margin: 20px 0px 0px 0px; width: 130px; background-color: #ccccff; float: right; border: 0px solid;}
+div.center {padding: 40px 40px 40px 40px; margin: 0px 115px 0px 115px; background-color: #ffeeff; color: #474747; border: 0px solid;}
+div.body2 {padding: 0px 40px 0px 40px; margin: 0px 20px 20px 20px; width: auto; float: center;}
+div.bottom {padding: 10px 10px 10px 10px; margin: 0px 0px 0px 0px; width: auto; background-color: #ccccff; float: center; border: 0px solid;}
+
+
+
+
+
+.center_halloween {
+  padding: 40px 40px 40px 40px;
+  margin: 0px 115px 0px 115px;
+  background-color: #ffeeff;
+  color: #474747;
+  border: 0px solid;
+  text-align:center;
+  background: repeating-linear-gradient(
+	to right,
+	#fec272,
+	#fec272 20px,
+	#8e8e8e 20px,
+	#8e8e8e 40px
+);
+
+}
+
+.center_harvest {
+  padding: 40px 40px 40px 40px;
+  margin: 0px 115px 0px 115px;
+  background-color: #ffeeff;
+  color: #474747;
+  border: 0px solid;
+  text-align:center;
+  background: repeating-linear-gradient(
+	to right,
+	#fec272,
+	#fec272 20px,
+	#856b4b 20px,
+	#856b4b 40px
+);
+}
+
+.center_nightsintohalloween {
+  padding: 40px 40px 40px 40px;
+  margin: 0px 115px 0px 115px;
+  background-color: #e4c6ff;
+  color: #474747;
+  border: 0px solid;
+  text-align:center;
+  background: repeating-linear-gradient(
+	to right,
+	#e4c6ff,
+	#e4c6ff 20px,
+	#ffefff 20px,
+	#ffefff 40px
+);
+}
+
+.thingabContainer {
+  width: auto;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.thinga {
+  float: left;
+  width: 50%;
+  background-color: #E7fffb;
+  border: 5px solid #5dafa6;
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.thinga_toppage {
+  float: left;
+  width: 25%;
+  padding: 10px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.thinga_halloween {
+  float: left;
+  width: 50%;
+  background-color: #fec272;
+  border: 5px solid #000000;
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.thinga_harvest {
+  float: left;
+  width: 50%;
+  background-color: #fec272;
+  border: 5px solid #5a390f;
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.thinga_nightshalloween {
+  float: left;
+  width: 50%;
+  background-color: #fec272;
+  border: 5px solid #8e3fd7;
+  border-radius: 15px;
+  padding: 10px;
+  margin-right: 5px;
+  position: relative;
+}
+
+.thingb {
+  float: right;
+  width: 50%;
+  background-color: #fefee9;
+  border: 5px solid #Ffeaaa;
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.thingb_toppage {
+  float: right;
+  width: 75%;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.thingb_toppage p {
+  line-height: 1.5;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.thingb_halloween {
+  float: right;
+  width: 50%;
+  background-color: #fffedb;
+  border: 5px solid #000000;
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.thingb_harvest {
+  float: right;
+  width: 50%;
+  background-color: #fffedb;
+  border: 5px solid #5a390f;
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.thingb_nightshalloween {
+  float: right;
+  width: 50%;
+  background-color: #fffedb;
+  border: 5px solid #8e3fd7;
+  border-radius: 15px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.thingc {
+  background-color: #ecd6ff;
+  border: 5px solid #C19ae2;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.alsolike_halloween .thingd {
+  background-color: #fec272;
+  border: 5px solid #000000;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.alsolike_harvest .thingd {
+  background-color: #fec272;
+  border: 5px solid #5a390f;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.alsolike_nightshalloween .thingd {
+  background-color: #fec272;
+  border: 5px solid #8e3fd7;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+}
+
+.thinge_halloween {
+  background-color: #fec272;
+  border: 5px solid #000000;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+  background: repeating-linear-gradient(
+	to right,
+	#fec272,
+	#fec272 20px,
+	#8e8e8e 20px,
+	#8e8e8e 40px
+  );
+
+}
+
+.thinge_harvest {
+  background-color: #fec272;
+  border: 5px solid #5a390f;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+  background: repeating-linear-gradient(
+	to right,
+	#fec272,
+	#fec272 20px,
+	#856b4b 20px,
+	#856b4b 40px
+  );
+
+}
+
+.thinge_nightshalloween {
+  background-color: #e4c6ff;
+  border: 5px solid #8e3fd7;
+  border-radius: 15px;
+  padding: 10px;
+  margin-top: 20px;
+  background: repeating-linear-gradient(
+	to right,
+	#e4c6ff,
+	#e4c6ff 20px,
+	#ffefff 20px,
+	#ffefff 40px
+  );
+
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.topnav {
+    overflow: hidden;
+    background-color: #ccccff;
+    padding: 10px 0px 10px 0px;
+}
+
+.topnav a {
+    display: block;
+    color: #000000;
+    text-align: center;
+}
+
+.column {
+    float: left;
+    width: 10%;
+    text-align: center;
+}
+
+.column a {
+    display: block;
+    color: #000000;
+    text-align: center;
+}
+
+.bottomcolumn {
+    float: left;
+    width: 33.33%;
+    text-align: center;
+}
+
+.bottomcolumn a {
+    display: block;
+    color: #000000;
+    text-align: center;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.row a {
+    text-align: center;
+}
+
+.bottomnav {
+    overflow: hidden;
+    background-color: #ccccff;
+    padding: 10px 0px 10px 0px;
+    text-align: center;
+}
+
+.bottomnav a {
+    display: block;
+    color: #000000;
+    text-align: center;
+}
+
+.body_column {
+    float: center;
+    width: 33.33%;
+    text-align: center;
+    background-color: #ffeeff;
+    padding: 10px 0px 10px 0px;
+    margin: 10px 0px 10px 0px;
+}
+
+.body_column a {
+    display: block;
+    color: #000000;
+    text-align: center;
+}
+
+@media screen and (max-width:600px) {
+    .column {
+        width: 100%;
+    }
+}
+
+
+.triangle-isosceles {
+	position:relative;
+	padding:6px;
+
+	color:#ffedff;
+	background:#ffedff;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+}
+
+.triangle-isosceles.left {
+	margin-left:1px;
+	background:#ffedff;
+}
+
+.triangle-isosceles.right {
+	margin-right:1px;
+	background:#ffedff;
+}
+
+.triangle-isosceles:after {
+	content:"";
+	position:absolute;
+	bottom:-6px;
+	left:1px;
+	border-width:10px 10px 0;
+	border-style:solid;
+	border-color:transparent #ffedff;
+        display:block; 
+    width:0;
+}
+
+.triangle-isosceles.left:after {
+	top:6px;
+	left:-8px;
+	bottom:auto;
+	border-width:10px 10px 10px 0;
+	border-color:transparent #ffedff;
+}
+
+.triangle-isosceles.right:after {
+	top:6px;
+	right:-8px;
+	bottom:auto;
+	border-width:10px 0px 10px 10px;
+	border-color:transparent #ffedff;
+}
+
+#header {
+  margin: 0px;
+  padding: 0px;
+  height: 200px;
+  font-family: Times New Roman;
+  font-size: 24px;
+}
+
+body 
+{ margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-left: 0;
+  padding-right: 0;
+background: #531458; /* Old browsers */
+background: -moz-linear-gradient(-90deg,  #9900ff 0%, #ccccff 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, color-stop(0%,#9900ff), color-stop(100%,#ccccff)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(-90deg,  #9900ff 0%,#ccccff 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(-90deg,  #9900ff 0%,#ccccff 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(-90deg,  #9900ff 0%,#ccccff 100%); /* IE10+ */
+background: linear-gradient(90deg,  #9900ff 0%,#ccccff 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9900ff', endColorstr='#ccccff',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+
+
+
+#topbanner {
+  border-width: 0;
+  left: 15px;
+  width: 822px;
+  margin: 0px 0px 20px 0px;
+  padding: 0px;
+  height: 250px;
+  font-family: Times New Roman;
+  font-size: 24px;
+  text-align: center; 
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+#left {
+  position: absolute;
+  left: 15px;
+  top: 260px;
+  width: 200px;
+  font-family: Times New Roman;
+  font-size: 20px;
+  overflow: auto;
+  height: 100%;
+}
+
+#center {
+  width: 750px;
+  top: 0;
+  margin-left: 230px;
+  margin-right: 15px;
+}
+
+#right {
+  position: absolute;
+  right: 15px;
+  top: 260px;
+  width: 200px;
+  font-family: Times New Roman;
+  font-size: 20px;
+  overflow: auto;
+  height: 100%;
+}
+
+#bottom {
+  text-align: center; 
+  background: transparent;
+  text-decoration: none;
+  padding: 0px 0px 10px 0;
+  font-family: Times New Roman;
+  font-size: 20px;
+}
+
+
+ul.bodylinks{
+text-align: right;
+background-repeat: no-repeat;
+padding-left: 0px;
+margin-left: 0px;
+padding-right: 0px;
+margin-right: 0px;
+list-style-type: none;
+direction: rtl;
+}
+
+li {
+  color: #0000cc; /* bullet color */
+}
+li span {
+  color: black; /* text color */
+}
+
+li { padding: 0px 0px 0px; 
+}
+
+.no-bullets {
+    list-style-type: none;
+}
+
+
+h1 {
+    text-align: center;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+	color: #000000;
+    text-align: center;
+}
+
+h6 {
+    text-align: center;
+}
+
+.items {
+    width: 33.33%;
+	float: center;
+    display: none; /* Hide columns by default */
+}
+
+.grid-row {
+    margin: 10px -10px;
+	display: flow-root;
+	max-width: 100%;
+	float: center;
+}
+
+/* Add padding BETWEEN each column (if you want) */
+.grid-row,
+.grid-row > .grid-column {
+    padding: 8px;
+	max-width: 100%;
+	display: flex;
+	float: center;
+}
+
+.wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Content */
+.grid-content {
+    background-color: white;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+}
+
+.halloween-grid-content {
+	border-color: #000000;
+	border-style: solid;
+	border-width: 5px;
+    background-color: #fec272;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+}
+
+.harvest-grid-content {
+	border-color: #5a390f;
+	border-style: solid;
+	border-width: 5px;
+    background-color: #fec272;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+}
+
+.test-grid-content {
+	border-color: #ff3399;
+	border-style: solid;
+	border-width: 5px;
+    background-color: #03fcc6;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+}
+
+.nightshalloween-grid-content {
+	border-color: #8e3fd7;
+	border-style: solid;
+	border-width: 5px;
+    background-color: #f59042;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+}
+
+.nightsintozines-grid-content {
+	border-color: #8e3fd7;
+	border-style: solid;
+	border-width: 5px;
+    background-color: #ffffff;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+}
+
+/* Create three equal columns that floats next to each other */
+.grid-column {
+    float: center;
+    width: 33.33%;
+	display: flow-root;
+}
+
+/* Clear floats after rows */ 
+.center:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* The Modal (background) */
+        .modal {
+            display: none; /* Hidden by default */
+            position: fixed; /* Stay in place */
+            z-index: 1; /* Sit on top */
+            padding-top: 10px; /* Location of the box */
+            left: 0;
+            top: 0;
+            width: 100%; /* Full width */
+            height: 100%; /* Full height */
+            overflow: auto; /* Enable scroll if needed */
+            background-color: rgb(0,0,0); /* Fallback color */
+            background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+        }
+
+        /* Modal Content */
+        .modal-content {
+            background-color: #fefefe;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 75%;
+        }
+
+        /* The Close Button */
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+.imagecenter {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+}
+
+img.center {
+    display: block;
+    margin: 0 auto;
+}
+
+table, th, td {
+    width: 100%;
+    border: 0px solid black;
+}
+
+
+
+
+/* other light box stuff */
+
+
+/* Hey self, if something on the index fucks up, you added position, top, and transform to this row 3 thingie. Undo it. You also added position: relative to the thinga thingie. */
+/* Additional note to self: this row3 column 3 thing works fine for an item with a single image. For an item with multiple images, you made a duplicate called row4 column 4, that works properly for them so they're not all sitting in a stack of layers. Use that instead.*/
+
+.row3 > .column3 {
+  padding: 0 8px;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  transform: translate(0, -50%)
+}
+
+.row3:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+.row4 > .column4 {
+  padding: 10px;
+  width: 100%;
+}
+
+.row4:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+
+/* Create five equal columns that floats next to eachother */
+.column3 {
+  float: left;
+  width: 20%;
+}
+
+.column4 {
+  float: left;
+  width: 20%;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 10px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: black;
+}
+
+/* Modal Content */
+.modal-content {
+  position: relative;
+  background-color: black;
+  margin: auto;
+  padding: 0;
+  width: 90%;
+  max-width: 1200px;
+}
+
+/* The Close Button */
+.close {
+  color: white;
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  font-size: 35px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #999;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* Hide the slides by default */
+.mySlides {
+  display: none;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 16px;
+  margin-top: -50px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* Position the "prev button" to the left */
+.prev {
+  left: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover,
+.next:hover {
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+/* Number text (1/3 etc) */
+.numbertext {
+  color: #f2f2f2;
+  font-size: 12px;
+  padding: 8px 12px;
+  position: absolute;
+  top: 0;
+}
+
+/* Caption text */
+.caption-container {
+  text-align: center;
+  background-color: black;
+  padding: 2px 16px;
+  color: white;
+}
+
+img.demo {
+  opacity: 0.6;
+}
+
+.active,
+.demo:hover {
+  opacity: 1;
+}
+
+img.hover-shadow {
+  transition: 0.3s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@viewport {
+  width: device-width ;
+  zoom: 1.0 ;
+}
+
+@-ms-viewport {
+  width: device-width ;
+}
+
+pre {
+    background: #f4f4f4;
+    border: 1px solid #ddd;
+    border-left: 3px solid #f36d33;
+    color: #666;
+    page-break-inside: avoid;
+    font-family: monospace;
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 1.6em;
+    max-width: 100%;
+    overflow: auto;
+    padding: 1em 1.5em;
+    display: block;
+    word-wrap: break-word;
+}
+
+#myBtn {
+  display: none; /* Hidden by default */
+  position: fixed; /* Fixed/sticky position */
+  bottom: 20px; /* Place the button at the bottom of the page */
+  right: 30px; /* Place the button 30px from the right */
+  z-index: 99; /* Make sure it does not overlap */
+  border: none; /* Remove borders */
+  outline: none; /* Remove outline */
+  background-color: #9900ff; /* Set a background color */
+  color: white; /* Text color */
+  cursor: pointer; /* Add a mouse pointer on hover */
+  padding: 15px; /* Some padding */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 18px; /* Increase font size */
+}
+
+
+.grid-topbar-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto ;
+}
+
+.grid-topbar-container > div {
+  text-align: center;
+  padding: 0px 5px 0px 5px ;
+}
+
+img{
+        max-width: 100%;
+        max-height: 100%;
+        display: block; /* remove extra space below image */
+    }
+
+.grid-rightbar-container {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto ;
+}
+
+.grid-rightbar-container > div {
+  text-align: center;
+  padding: 5px 5px 5px 5px ;
+}
+
+.grid-rightbar-container > img {
+  object-fit: cover;
+  width: 100%;
+  max-height: 100%;
+}
+
+.grid-leftbar-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto auto auto auto auto auto auto auto auto;
+}
+
+.grid-leftbar-container > div {
+  text-align: center;
+  padding: 5px 5px 5px 5px ;
+}
+
+#mid-header span
+{
+  font-size: 130%;
+}
+
+.question_block {
+  /* display: grid; */
+  /* width: 1fr; */
+  /* height: auto; */
+  background-color: #fefee9;
+  border: 5px solid #8e3fd7;
+  border-radius: 15px;
+  padding: 10px;
+  /* grid-template-columns: repeat(10, minmax(0, 1fr)); */
+  /* grid-template-rows: auto ; */
+}
+
+.question_block_question {
+  font-weight:bolder;
+  font-size:large;
+}
+
+.question_block_answer {
+  margin-top: 5px;
+  padding-left: 25px;}

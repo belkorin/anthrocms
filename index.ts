@@ -15,6 +15,9 @@ import https = require('https');
 
 import {authRouter} from "./auth";
 import { items } from './admin/items';
+import path = require('path');
+import { pageMapper } from './pageMapper';
+import { helpers } from './helpers';
 
 declare module 'express-session' {
   interface SessionData {
@@ -44,6 +47,10 @@ myDataSource
 
 // Instantiating the Express object.
 const app: Express = express();
+
+Eta.configure({
+  views: path.join(__dirname, "page_parts")
+})
 
 app.use(helmet());
 app.use(cors());
@@ -84,6 +91,7 @@ passport.serializeUser((user, done) => {
   });
 
 app.use(expressSession(session));
+app.use(express.static('assets'));
 
 passport.use(strategy);
 app.use(passport.initialize());
@@ -109,6 +117,8 @@ const secured = (req, res, next) => {
     res.redirect("/admin/login");
 };
 
+pageMapper.mapPages(myDataSource, app);
+
 app.use("/admin", authRouter);
 
 app.get("/admin/items", secured, async function(req: Request, res: Response) {
@@ -120,6 +130,44 @@ app.get("/admin/edit", secured, async function(req: Request, res: Response) {
     //res.send(Eta.render('The answer to everything is <%= it.answer %>', { answer: 42 }));
     res.send(await items.renderEditItem(myDataSource, Number(req.query.id)));
 });
+
+app.get("/products/:pid", async function(req: Request, res: Response) {
+  const template = "<%~ includeFile('./main.eta', it) %>"
+
+  const item = (await getItems.getItem(myDataSource, req.params.pid));
+  const translatedItem = Array.from(translateObject.toWebsiteObject([item]).values())[0];
+  const it = { 
+    gridItemClass: "halloween",
+    pageTemplate: "product.eta",
+    theme: translatedItem.Cat,
+    formatPrice: helpers.formatPrice,
+    data: translatedItem };
+
+  const rendered = Eta.render(template, it);
+
+  res.send(rendered);
+});
+
+app.get("/productsTest", async function(req: Request, res: Response) {
+
+  const template = "<%~ includeFile('./main.eta', it) %>"
+
+  const items = (await getItems.getItems(myDataSource, ["06-08"]));
+  const translatedItems = Array.from(translateObject.toWebsiteObject(items).values())[0];
+  const it = { 
+    banner: "title_graphic_halloween.png", 
+    bannerAlt: "Halloween Title Graphic", 
+    gridItemClass: "halloween",
+    pageTemplate: "product.eta",
+    theme: "halloween",
+    formatPrice: helpers.formatPrice,
+    data: translatedItems };
+
+  const rendered = Eta.render(template, it);
+
+  res.send(rendered);
+  
+})
 
 app.get("/admin/import", secured, async function(req: Request, res: Response) {
     const options = {

@@ -1,0 +1,115 @@
+<div class="thingabContainer">
+					<div class="thinga_<%=it.theme%>">
+						<!-- Images used to open the lightbox -->
+						<div class="row3">
+							<div class="column3" align="center"> <img src="/<%=it.data.Image%>" onclick="openModal();currentSlide(1)" class="hover-shadow"> </div>
+						</div>
+						<!-- The Modal/Lightbox -->
+						<div id="myModal" class="modal"> <span class="close cursor" onclick="closeModal()">&times;</span>
+							<div class="modal-content">
+								<div class="mySlides">
+									<div class="numbertext">1 / 1</div> <img src="/<%=it.data.ImageFull%>" style="width:35%" class="imagecenter"> </div>
+								<!-- Next/previous controls --><a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next" onclick="plusSlides(1)">&#10095;</a>
+								<!-- Caption text -->
+								<div class="caption-container">
+									<p id="caption"></p>
+								</div>
+								<!-- Thumbnail image controls -->
+								<div class="column3"> <img class="demo" src="/<%=it.data.Image%>" onclick="currentSlide(1)" alt="Image 1"> </div>
+							</div>
+						</div>
+						<script>
+						// Open the Modal
+						function openModal() {
+							document.getElementById("myModal").style.display = "block";
+						}
+						// Close the Modal
+						function closeModal() {
+							document.getElementById("myModal").style.display = "none";
+						}
+						document.addEventListener('keyup', function(e) {
+							if(e.keyCode == 27) {
+								closeModal();
+							}
+						});
+						var slideIndex = 1;
+						showSlides(slideIndex);
+						// Next/previous controls
+						function plusSlides(n) {
+							showSlides(slideIndex += n);
+						}
+						document.addEventListener('keydown', function(e) {
+							if(e.keyCode == 39) {
+								plusSlides(1);
+							}
+						});
+						document.addEventListener('keydown', function(e) {
+							if(e.keyCode == 37) {
+								plusSlides(-1);
+							}
+						});
+						// Thumbnail image controls
+						function currentSlide(n) {
+							showSlides(slideIndex = n);
+						}
+
+						function showSlides(n) {
+							var i;
+							var slides = document.getElementsByClassName("mySlides");
+							var dots = document.getElementsByClassName("demo");
+							var captionText = document.getElementById("caption");
+							if(n > slides.length) {
+								slideIndex = 1
+							}
+							if(n < 1) {
+								slideIndex = slides.length
+							}
+							for(i = 0; i < slides.length; i++) {
+								slides[i].style.display = "none";
+							}
+							for(i = 0; i < dots.length; i++) {
+								dots[i].className = dots[i].className.replace(" active", "");
+							}
+							slides[slideIndex - 1].style.display = "block";
+							dots[slideIndex - 1].className += " active";
+							captionText.innerHTML = dots[slideIndex - 1].alt;
+						}
+						</script>
+					</div>
+					<div class="thingb_<%=it.theme%>">
+						<h1 align="center"><%=it.data.Name%></h1>
+						<h5 align="center">Item #<%=it.data.id%></h5>
+						<p><%= (it.data.LongDescription && it.data.LongDescription.length > 0 ? it.data.LongDescription : it.data.Description) %></p>
+						<% if(it.data.tags.includes("glow")) { %>
+<br>All of our glow-in-the-dark items are tested by being exposed to one full minute of natural sunlight. Exposure to other light sources may yield different results.
+<%}%>
+
+						<form target="paypal" action="https://www.paypal.com/cgi-bin/webscr" method="post">
+						<input type="hidden" name="cmd" value="_s-xclick">
+						<input type="hidden" name="hosted_button_id" value="PUW8P8N6B53L8">
+						<table>
+						<tr><td><input type="hidden" name="on0" value="Price + Shipping">Price + Shipping</td></tr><tr><td><select name="os0">
+							<option value="<%=it.formatPrice(it.data.price)%> item + $5.60 USPS first class parcel ="><%=it.formatPrice(it.data.price)%> item + $5.60 USPS first class parcel = <%=it.formatPrice(it.data.price+5.6)%> USD</option>
+							<option value="<%=it.formatPrice(it.data.price)%> item + $10.40 USPS small flat rate priority box ="><%=it.formatPrice(it.data.price)%> item + $10.40 USPS small flat rate priority box = <%=it.formatPrice(it.data.price+10.4)%> USD</option>
+						</select> </td></tr>
+						</table>
+						<input type="hidden" name="currency_code" value="USD">
+						<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_cart_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+						<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+						</form>
+
+
+
+
+						<!--
+<p align="center"><a href="sweet-dreams-boutique.com/soldout.html"><img src="sweet-dreams-boutique.com/button_soldout.png"></a></p>
+-->
+					</div>
+				</div>
+				<div id="shippingdetails"></div>
+								
+				
+				<div id="alsolike" class="alsolike_harvest"></div>				
+				
+
+			</div>

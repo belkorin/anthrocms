@@ -1,0 +1,44 @@
+<center><img src="https://sweet-dreams-boutique.com/<%=it.banner%>" class="hover-shadow" alt="<%=it.bannerAlt%>" onload="this.width/=2;this.onload=null;"></center>
+				<h3 style="text-shadow: 0px 0px 5px #acffc2;">Also, feel free to visit our <a href="https://www.ebay.com/usr/anthropomorph7">ebay shop</a>!</h3>
+				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+				<div class="controls">
+					<div class="control" style="color: #000000">Search:
+						<input type="text" placeholder="Search by Name" id="search" /> </div>
+					<div class="control" style="color: #000000">Sort:
+						<select id="sort">
+							<option value="Default">Default</option>
+							<option value="Name">Alphabetical A-Z</option>
+							<option value="Reverse Name">Reverse Alphabetical Z-A</option>
+							<option value="Price">Price Low-to-High</option>
+							<option value="Reverse Price">Price High-to-Low</option>
+							<option value="CatHalloween">All Halloween</option>
+							<option value="CatGlow">Just Glow-in-the-Dark</option>
+						</select>
+					</div>
+				</div>
+                                
+				<div id="items">
+                <% it.data.forEach(function(item, index) { %>
+                    <% if(index % 3 == 0) { %>
+		                <% if(index != 0) {%></div><%}%>
+                        <div class="grid-row">
+
+	                <%}%>
+                    <%~ includeFile('./product_card.eta', {formatPrice: it.formatPrice, gridItemClass: it.gridItemClass, data: item}) %>
+                <%})%>
+                </div>
+				<script type="text/javascript">
+				$('#search').keyup(function() { /*Live Search, When Pressing any Keys*/
+					searching();
+				});
+				$('#sort').change(function() { /*Live Search, When Sort by*/
+					searching();
+				});
+
+				</script>
+				<br>
+				<br>
+				<br>
+				<Br>
+
+                

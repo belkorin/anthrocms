@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8">
+	<META NAME="sweet, dreams, boutique" content="unique, fashion, jewelry, accessories, stationery, sweets, dreams">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Sweet Dreams Boutique - Halloween Page</title>
+	<link rel="SHORTCUT ICON" href="https://www.sweet-dreams-boutique.com/sd_favicon.ico">
+	<script type="text/javascript" src="https://www.sweet-dreams-boutique.com/js/redirection-mobile.js"></script>
+	<script type="text/javascript">
+	// <![CDATA[
+	SA.redirection_mobile({
+		mobile_url: "https://sweet-dreams-boutique.com/mobile",
+	});
+	// ]]>
+	</script>
+	<LINK href="/mycss.css" rel="stylesheet" type="text/css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript">
+		window.itemCategory = "halloween";
+		<!-- window.useGenericGridItemClass = true; -->
+	</script>
+
+</head>
+
+<body>
+	<div style="background-image: url('/pale_stars.png');">
+		<div class="body2">
+			<button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+			<script>
+			//Get the button:
+			mybutton = document.getElementById("myBtn");
+			// When the user scrolls down 20px from the top of the document, show the button
+			window.onscroll = function() {
+				scrollFunction()
+			};
+
+			function scrollFunction() {
+				if(document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+					mybutton.style.display = "block";
+				} else {
+					mybutton.style.display = "none";
+				}
+			}
+			// When the user clicks on the button, scroll to the top of the document
+			function topFunction() {
+				document.body.scrollTop = 0; // For Safari
+				document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+			}
+			</script>
+			<br>
+			<div id="topnav"><%~ includeFile('./topnav.html', it) %></div>
+			<div id="leftnav"><%~ includeFile('./leftnav.html', it) %></div>
+			<div id="rightnav"><%~ includeFile('./rightnav.html', it) %></div>
+			<div class="<% if(it.theme) {%><%=`center_${it.theme} `%><%}%>center" style="text-align:center;">
+                <%~ includeFile(`./${it.pageTemplate}`, it) %>
+            </div>
+			<div id="bottomnav"><%~ includeFile('./bottomnav.html', it) %></div>
+		</div>
+	</div>
+	<br>
+	<br>
+
+</body>
+
+</html>

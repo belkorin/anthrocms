@@ -14,11 +14,13 @@ class websiteItem {
     id : string;
     Name: string;
     Description: string;
+    LongDescription: string;
     price: number;
     Type: string;
     Cat: string;
     tags: string[];
     Image: string;
+    ImageFull: string;
     Link: string;
 
     constructor(item: item) {
@@ -29,11 +31,13 @@ class websiteItem {
         this.id = `${paddedCat}-${paddedSubcat}-${paddedItem}`;
         this.Name = item.name;
         this.Description = item.shortDescription;
+        this.LongDescription = item.longDescription;
         this.price = item.price;
         this.Type = item.itemType.typeName;
         this.Cat = item.itemSubCategory.subCatName;
         this.tags = item.itemTags == null ? null : item.itemTags.map((x) => x.tagName);
         this.Image = `https://www.sweet-dreams-boutique.com/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-thumb.png`;
+        this.ImageFull = `https://www.sweet-dreams-boutique.com/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-full.png`;
         this.Link = `/products/${this.id}`;
     }
 }

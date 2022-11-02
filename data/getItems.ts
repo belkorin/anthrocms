@@ -10,7 +10,7 @@ export class getItems {
                                 .leftJoinAndSelect("item.itemCategory", "itemCategory")
                                 .leftJoinAndSelect("item.itemSubCategory", "itemSubCategory")
                                 .leftJoinAndSelect("item.itemTags", "tags");
-        if(catsWithSubcats != null) {
+        if(catsWithSubcats != null && catsWithSubcats.length > 0) {
             queryBuilder.andWhere(new Brackets((qb) => {
                 let i = 0;
                 for (const catSubcat of catsWithSubcats) {
@@ -23,15 +23,36 @@ export class getItems {
             }));
         }
 
-        if(types != null) {
+        if(types != null && types.length > 0) {
             queryBuilder.andWhere("itemType.typeName in (:...typeName)", {typeName: types});
         }
-        if(tags != null) {
+        if(tags != null && tags.length > 0) {
             queryBuilder.andWhere("tags.tagName in (:...filterTags)", {filterTags: tags});
         }
 
         const filteredItems = await queryBuilder.getMany();
 
         return filteredItems;
+    }
+
+    static async getItem(datasource: DataSource, itemID : string) {
+        const items = datasource.getRepository(item);
+
+        const idParts = itemID.split('-');
+        const cat = Number(idParts[0]);
+        const subCat = Number(idParts[1]);
+        const id = Number(idParts[2]);
+
+        var i = await items.findOne({
+            where: {
+                itemCategoryID: cat,
+                itemSubcategoryID: subCat,
+                itemID: id
+            },
+            relationLoadStrategy: "join",
+            relations: ["itemType", "itemCategory", "itemSubCategory", "itemTags"]
+        });
+
+        return i;
     }
 }

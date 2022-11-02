@@ -1,0 +1,11 @@
+{
+    "banner" : "title_graphic_halloween.png",
+    "bannerAlt" : "Halloween Title Graphic",
+    "page": "halloween",
+    "gridItemClass" : "halloween",
+    "pageTheme" : "halloween",
+    "pageType" : "products",
+    "categories" : ["06-08"],
+    "itemTypes" : [],
+    "tags" : []
+}

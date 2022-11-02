@@ -1,0 +1,31 @@
+<div class="thingc" align="center">
+	<h3 align="center">Returns not accepted at this time.</h3>
+	<h5>
+Shipping times are based on those provided by the United States Postal Service for those particular services. The times provided are not guaranteed. They may be less time, or they may be more, depending on the distance between recipient and sender, or based on volume of mail and if it is a busy time of year for the postal service. Only Registered Mail is guaranteed for its time sensativity, however it is extremely costly. If you require something in a guaranteed amount of time, please use the contact form below to let us know what your mailing zip code is, and we'll check the cost of shipping for your desired items.
+</h5>
+	<h3>International Shipping (outside of USA)</h3>
+	<h5>We <em>can</em> ship internationally, but please use the form below to send us your desired item(s) and mailing address before placing an order, so that we can determine the best shipping option for you, and send a customized invoice to your email. Any international orders placed through the above "Add to Cart" button will be voided.</h5>
+	<h3 align="center">Combined Shipping/International Shipping</h3>
+	<p>If you need more than one item and want combined shipping, fill out this form and we'll get back to you as quickly as possible. Please include which items (item numbers), and how many of them you would like, as well as your mailing zipcode, <em>in your message</em> so that we can quickly weigh your desired order and determine the best shipping options available. Failure to send item numbers or a zip code may result in a delay in processing your request. Item numbers are located directly below the item's title.</p>
+	<br>
+	<div align="center">
+		<form method="post" name="contact_form" action="https://submit-form.com/op0D5JNU"> Your Name:
+			<input type="text" name="name" required \>
+			<br> Email Address:
+			<input type="text" name="email" required \>
+			<br> Message:
+			<textarea name="message" required></textarea>
+			<!-- [PUT THE CAPTCHA WHERE YOU WANT IT] -->
+			<div class="g-recaptcha" data-sitekey="6LeY5cEUAAAAAEtFbqwhN7vAHrfzCUGDJOom4f9X" data-callback="recaptchaCallback">
+				<!-- tells the recaptcha javascript to call this javascript function when successfully completed -->
+			</div>
+			<input type="hidden" name="_redirect" value="https://www.sweet-dreams-boutique.com/contact-form-thank-you.html" />
+			<div id="captcha-error" style="background-color:white;color:red;visibility:hidden;height:0px;">CAPTCHA must be completed</div>
+			<!-- the error message, hidden by default -->
+			<input type="submit" value="Submit" onClick="return onSubmit()">
+			<!-- onclick here runs the completed check script, return false means don't submit the form -->
+		</form>
+	</div>
+</div>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&amp;render=explicit"></script>
