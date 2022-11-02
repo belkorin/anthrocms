@@ -12,13 +12,13 @@ import Auth0Strategy  = require( 'passport-auth0');
 import passport  = require( 'passport');
 import Eta = require('eta');
 import https = require('https');
+import fs = require("fs");
 
 import {authRouter} from "./auth";
 import { items } from './admin/items';
 import path = require('path');
 import { pageMapper } from './pageMapper';
 import { helpers } from './helpers';
-
 declare module 'express-session' {
   interface SessionData {
     returnTo: string;
@@ -215,13 +215,30 @@ app.get("/items", async function(req: Request, res: Response) {
     res.send(Object.fromEntries(webItemsMap));
   });
 
-// Set app to listen on port 3000
-app.listen(3000, async function() {
-    // const database = await db.openDb(sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
+  if(fs.existsSync("key.pem")) {
+    https
+    .createServer(
+      // Provide the private and public key to the server by reading each
+      // file's content with the readFileSync() method.
+      {
+        key: fs.readFileSync("key.pem"),
+        cert: fs.readFileSync("cert.pem"),
+      },
+      app
+    )
+    .listen(3000, () => {
+      console.log("serever is runing at port 3000");
+    });
+  }
+  else {
+    // Set app to listen on port 3000
+    app.listen(3000, async function() {
+        // const database = await db.openDb(sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);
 
-    // await database.initializeIfNeeded();
+        // await database.initializeIfNeeded();
 
-    // await database.parseJsonIntoDB("halloween_items.json");
+        // await database.parseJsonIntoDB("halloween_items.json");
 
-    console.log("server is running on port 3000");
-});
+        console.log("server is running on port 3000");
+    });
+  }
