@@ -215,6 +215,37 @@ app.get("/items", async function(req: Request, res: Response) {
     res.send(Object.fromEntries(webItemsMap));
   });
 
+  app.get("/dynamicSample", async function(req: Request, res: Response) {
+
+    const catString = req.query.cats as string;
+    const cats = catString == null ? null as Array<string> : catString.split(',');
+    const itemTypeString = req.query.itemTypes as string;
+    const itemTypes = itemTypeString == null ? null as Array<string> : itemTypeString.split(',');
+    const tagString = req.query.tags as string;
+    const tags = tagString == null ? null as Array<string> : tagString.split(',');
+
+    const items = (await getItems.getItems(myDataSource, cats, itemTypes, tags));
+    
+    const webItemsMap = translateObject.toWebsiteObject(items);
+
+    const template = "<%~ includeFile('./main.eta', it) %>"
+                  
+    const translatedItems = Array.from(translateObject.toWebsiteObject(items).values());
+    const it = { 
+      banner: req.query.banner, 
+      bannerAlt: req.query.bannerAlt, 
+      gridItemClass: req.query.gridItemClass,
+      pageTemplate: `products.eta`,
+      additionalClasses: [`${req.query.pageTheme}-grid-content`],
+      theme: req.query.pageTheme,
+      formatPrice: helpers.formatPrice,
+      data: translatedItems };
+  
+    const rendered = Eta.render(template, it);
+  
+    res.send(rendered);
+  });
+
   if(fs.existsSync("key.pem")) {
     https
     .createServer(
