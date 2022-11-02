@@ -22,7 +22,12 @@ export class jsonImport {
     }
 
     static async parseJsonIntoDB(db : DataSource, jsonFile : string) {
-        const json = (await fsPromises.readFile(jsonFile)).toString(); 
+
+        const json = (await fsPromises.readFile(jsonFile)).toString();
+        await this.parseJsonIntoDBFromText(db, json);
+    }
+
+    static async parseJsonIntoDBFromText(db : DataSource, json : string) {
         const obj = JSON.parse(json);
         const items = Object.keys(obj).map((k) => new itemModel(k, obj[k]));
 

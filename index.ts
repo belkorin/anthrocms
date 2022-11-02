@@ -10,7 +10,8 @@ import dotenv  = require( "dotenv");
 import expressSession  = require( 'express-session');
 import Auth0Strategy  = require( 'passport-auth0');
 import passport  = require( 'passport');
-import Eta = require('eta')
+import Eta = require('eta');
+import https = require('https');
 
 import {authRouter} from "./auth";
 import { items } from './admin/items';
@@ -120,6 +121,30 @@ app.get("/admin/edit", secured, async function(req: Request, res: Response) {
     res.send(await items.renderEditItem(myDataSource, Number(req.query.id)));
 });
 
+app.get("/admin/import", secured, async function(req: Request, res: Response) {
+    const options = {
+        host: 'www.sweet-dreams-boutique.com',
+        path: `/${req.query.json}`,
+        
+      };
+      
+     const callback = function(response) {
+        var str = '';
+      
+        //another chunk of data has been received, so append it to `str`
+        response.on('data', function (chunk) {
+          str += chunk;
+        });
+      
+        //the whole response has been received, so we just print it out here
+        response.on('end', async function () {
+          console.log(str);
+          await jsonImport.parseJsonIntoDBFromText(myDataSource, str);
+        });
+      }
+      
+      https.request(options, callback).end();});
+
 app.get("/items", async function(req: Request, res: Response) {
 
     const catString = req.query.cats as string;
@@ -136,7 +161,7 @@ app.get("/items", async function(req: Request, res: Response) {
     // Respond with Express
     res.send(Object.fromEntries(webItemsMap));
   });
-  
+
 // Set app to listen on port 3000
 app.listen(3000, async function() {
     // const database = await db.openDb(sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);

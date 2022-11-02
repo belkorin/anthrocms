@@ -12,9 +12,13 @@ export class getItems {
                                 .leftJoinAndSelect("item.itemTags", "tags");
         if(catsWithSubcats != null) {
             queryBuilder.andWhere(new Brackets((qb) => {
+                let i = 0;
                 for (const catSubcat of catsWithSubcats) {
                     const catAndSubcat = catSubcat.split('-').map((x) => Number(x));
-                    qb.orWhere("item.itemCategoryID = :catID and item.itemSubcategoryID = :subcatID", {catID: catAndSubcat[0], subcatID: catAndSubcat[1]});
+                    qb.orWhere(`(item.itemCategoryID = :catID${i} and item.itemSubcategoryID = :subcatID${i})`);
+                    queryBuilder.setParameter(`catID${i}`, catAndSubcat[0]);
+                    queryBuilder.setParameter(`subcatID${i}`, catAndSubcat[1]);
+                    i++;
                 }
             }));
         }
