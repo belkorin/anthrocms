@@ -6,8 +6,8 @@
 	<META NAME="sweet, dreams, boutique" content="unique, fashion, jewelry, accessories, stationery, sweets, dreams">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Sweet Dreams Boutique - Halloween Page</title>
-	<link rel="SHORTCUT ICON" href="https://www.sweet-dreams-boutique.com/sd_favicon.ico">
-	<script type="text/javascript" src="https://www.sweet-dreams-boutique.com/js/redirection-mobile.js"></script>
+	<link rel="SHORTCUT ICON" href="/sd_favicon.ico">
+	<script type="text/javascript" src="/js/redirection-mobile.js"></script>
 	<script type="text/javascript">
 	// <![CDATA[
 	SA.redirection_mobile({

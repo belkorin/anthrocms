@@ -36,8 +36,8 @@ class websiteItem {
         this.Type = item.itemType.typeName;
         this.Cat = item.itemSubCategory.subCatName;
         this.tags = item.itemTags == null ? null : item.itemTags.map((x) => x.tagName);
-        this.Image = `https://www.sweet-dreams-boutique.com/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-thumb.png`;
-        this.ImageFull = `https://www.sweet-dreams-boutique.com/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-full.png`;
+        this.Image = `/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-thumb.png`;
+        this.ImageFull = `/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-full.png`;
         this.Link = `/products/${this.id}`;
     }
 }

@@ -135,6 +135,11 @@ app.get("/products/:pid", async function(req: Request, res: Response) {
   const template = "<%~ includeFile('./main.eta', it) %>"
 
   const item = (await getItems.getItem(myDataSource, req.params.pid));
+
+  if(item == null) {
+    res.sendStatus(404);
+  }
+
   const translatedItem = Array.from(translateObject.toWebsiteObject([item]).values())[0];
   const it = { 
     gridItemClass: "halloween",
