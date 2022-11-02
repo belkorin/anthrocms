@@ -19,6 +19,7 @@ import { items } from './admin/items';
 import path = require('path');
 import { pageMapper } from './pageMapper';
 import { helpers } from './helpers';
+import { ImageGen } from './imageGen';
 declare module 'express-session' {
   interface SessionData {
     returnTo: string;
@@ -223,6 +224,7 @@ app.get("/items", async function(req: Request, res: Response) {
     const itemTypes = itemTypeString == null ? null as Array<string> : itemTypeString.split(',');
     const tagString = req.query.tags as string;
     const tags = tagString == null ? null as Array<string> : tagString.split(',');
+    const bannerDataUri = req.query.bannerText ? await ImageGen.getBanner(req.query.bannerText as string) : null;
 
     const items = (await getItems.getItems(myDataSource, cats, itemTypes, tags));
     
@@ -232,7 +234,7 @@ app.get("/items", async function(req: Request, res: Response) {
                   
     const translatedItems = Array.from(translateObject.toWebsiteObject(items).values());
     const it = { 
-      banner: req.query.banner, 
+      banner: bannerDataUri ? bannerDataUri : `/${req.query.banner}`, 
       bannerAlt: req.query.bannerAlt, 
       gridItemClass: req.query.gridItemClass,
       pageTemplate: `products.eta`,
