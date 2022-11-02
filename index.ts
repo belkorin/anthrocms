@@ -10,8 +10,10 @@ import dotenv  = require( "dotenv");
 import expressSession  = require( 'express-session');
 import Auth0Strategy  = require( 'passport-auth0');
 import passport  = require( 'passport');
+import Eta = require('eta')
 
 import {authRouter} from "./auth";
+import { items } from './admin/items';
 
 declare module 'express-session' {
   interface SessionData {
@@ -108,6 +110,16 @@ const secured = (req, res, next) => {
 
 app.use("/admin", authRouter);
 
+app.get("/admin/items", secured, async function(req: Request, res: Response) {
+    //res.send(Eta.render('The answer to everything is <%= it.answer %>', { answer: 42 }));
+    res.send(await items.renderGetItems(myDataSource));
+});
+
+app.get("/admin/edit", secured, async function(req: Request, res: Response) {
+    //res.send(Eta.render('The answer to everything is <%= it.answer %>', { answer: 42 }));
+    res.send(await items.renderEditItem(myDataSource, Number(req.query.id)));
+});
+
 app.get("/items", async function(req: Request, res: Response) {
 
     const catString = req.query.cats as string;
@@ -124,12 +136,7 @@ app.get("/items", async function(req: Request, res: Response) {
     // Respond with Express
     res.send(Object.fromEntries(webItemsMap));
   });
-
-app.get("/admin/items", secured, function(req: Request, res: Response) {
-    res.send("hello from admin items");
-    
-})
-
+  
 // Set app to listen on port 3000
 app.listen(3000, async function() {
     // const database = await db.openDb(sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE);

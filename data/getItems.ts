@@ -2,7 +2,7 @@ import { Brackets, DataSource } from "typeorm";
 import { item } from "../entities/item";
 
 export class getItems {
-    static async getItems(datasource: DataSource, catsWithSubcats: string[], types: string[] = null, tags: string[] = null) : Promise<item[]> {
+    static async getItems(datasource: DataSource, catsWithSubcats?: string[], types: string[] = null, tags: string[] = null) : Promise<item[]> {
         const items = datasource.getRepository(item);
 
         const queryBuilder = items.createQueryBuilder("item").where('1 = 1')
