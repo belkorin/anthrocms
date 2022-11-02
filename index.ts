@@ -1,9 +1,28 @@
-import * as express from 'express';
+import express = require('express');
 import { Express, Request, Response } from 'express';
 import { getItems } from './data/getItems';
 import { translateObject } from './data/translateToWebsiteObject';
 import { myDataSource } from "./datasource";
 import { jsonImport } from './jsonImport';
+import cors = require("cors");
+import helmet from "helmet";
+import dotenv  = require( "dotenv");
+import expressSession  = require( 'express-session');
+import Auth0Strategy  = require( 'passport-auth0');
+import passport  = require( 'passport');
+
+import {authRouter} from "./auth";
+
+declare module 'express-session' {
+  interface SessionData {
+    returnTo: string;
+  }
+}
+
+function controller(req: express.Request, res: express.Response) {
+  req.session.returnTo;
+}
+
 //import { db } from './db';
 
 // establish database connection
@@ -23,11 +42,71 @@ myDataSource
 // Instantiating the Express object.
 const app: Express = express();
 
+app.use(helmet());
+app.use(cors());
+
+const session = {
+    secret: process.env.SESSION_SECRET,
+    cookie: {},
+    resave: false,
+    saveUninitialized: false
+};
+
+const strategy = new Auth0Strategy(
+    {
+        domain: process.env.AUTH0_DOMAIN,
+        clientID: process.env.AUTH0_CLIENT_ID,
+        clientSecret: process.env.AUTH0_CLIENT_SECRET,
+        callbackURL: process.env.AUTH0_CALLBACK_URL
+    },
+    function(accessToken, refreshToken, extraParams, profile, done) {
+        /**
+         * Access tokens are used to authorize users to an API
+         * (resource server)
+         * accessToken is the token to call the Auth0 API
+         * or a secured third-party API
+         * extraParams.id_token has the JSON Web Token
+         * profile has all the information from the user
+         */
+        return done(null, profile);
+    }
+);
+
+passport.serializeUser((user, done) => {
+    done(null, user);
+  });
+  
+  passport.deserializeUser((user, done) => {
+    done(null, user);
+  });
+
+app.use(expressSession(session));
+
+passport.use(strategy);
+app.use(passport.initialize());
+app.use(passport.session());
+
+
 // Handles whenever the root directory of the website is accessed.
 app.get("/", function(req: Request, res: Response) {
   // Respond with Express
   res.send("Hello world! Stay a while and listen!");
 });
+
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.isAuthenticated();
+    next();
+  });
+
+const secured = (req, res, next) => {
+    if (req.user) {
+        return next();
+    }
+    req.session.returnTo = req.originalUrl;
+    res.redirect("/admin/login");
+};
+
+app.use("/admin", authRouter);
 
 app.get("/items", async function(req: Request, res: Response) {
 
@@ -45,6 +124,11 @@ app.get("/items", async function(req: Request, res: Response) {
     // Respond with Express
     res.send(Object.fromEntries(webItemsMap));
   });
+
+app.get("/admin/items", secured, function(req: Request, res: Response) {
+    res.send("hello from admin items");
+    
+})
 
 // Set app to listen on port 3000
 app.listen(3000, async function() {

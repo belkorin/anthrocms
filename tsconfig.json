@@ -4,11 +4,13 @@
   "compilerOptions": {
       "lib": ["es5", "es6"],
       "target": "es6",
-      "module": "commonjs",
+      "module": "CommonJS",
       "moduleResolution": "node",
       "emitDecoratorMetadata": true,
       "experimentalDecorators": true,
-      "sourceMap": true
+      "sourceMap": true,
+      "esModuleInterop": true,
+      "allowSyntheticDefaultImports": true
   },
   "exclude": [
       "node_modules"
