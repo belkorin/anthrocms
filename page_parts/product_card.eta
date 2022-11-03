@@ -1,5 +1,5 @@
 <div class="grid-column">
-    <div class="item <%= `${it.gridItemClass}-grid-content` %><% if(it.additionalClasses) {%><%= ` ${it.additionalClasses.join(' ')}`%><% } %>">
+    <div class="item <% if(it.gridItemClass) {%><%=`${it.gridItemClass}-grid-content`%><%} else {%> grid-content <%}%> <% if(it.additionalClasses) {%><%= ` ${it.additionalClasses.join(' ')}`%><% } %>">
         <center><a href="<%=it.data.Link%>"><img class="image" src="<%=it.data.Image%>"></a></center>
         <a href="<%=it.data.Link%>"><p class="name"><%=it.data.Name%></p></a>
         <p class="description"><%=it.data.Description%></p>
