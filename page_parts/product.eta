@@ -109,7 +109,7 @@
 				<div id="shippingdetails"></div>
 								
 				
-				<div id="alsolike" class="alsolike_harvest"></div>				
+				<div id="alsolike" class="alsolike_<%=it.theme%>"><%~ includeFile('./alsolike.eta', {formatPrice: it.formatPrice, gridItemClass: it.gridItemClass, data: it.suggest}) %></div>				
 				
 
 			</div>

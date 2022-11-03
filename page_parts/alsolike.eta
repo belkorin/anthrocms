@@ -1,0 +1,20 @@
+<div class="thingd" align="center">
+    <h1 align="center" style="color: #000000">You might also like...</h1>
+    <div id="suggested" align="center">
+    <% let openGridRow = false; 
+    it.data.forEach(function(item, index) { 
+        if(index % 3 == 0) {
+            if(openGridRow) {%>
+                </div>
+                <% openGridRow = false;
+            }%>
+            <div class="grid-row">
+            <% openGridRow = true;
+        }%>
+        <%~ includeFile('./product_card.eta', {formatPrice: it.formatPrice, gridItemClass: it.gridItemClass, data: item}) %>
+    <%})%>
+    <% if(openGridRow) {%>
+        </div>
+    <%}%>
+    </div>
+</div>

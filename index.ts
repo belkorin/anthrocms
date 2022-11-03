@@ -13,6 +13,7 @@ import passport  = require( 'passport');
 import Eta = require('eta');
 import https = require('https');
 import fs = require("fs");
+import * as fsPromises from 'fs/promises';
 
 import {authRouter} from "./auth";
 import { items } from './admin/items';
@@ -20,6 +21,7 @@ import path = require('path');
 import { pageMapper } from './pageMapper';
 import { helpers } from './helpers';
 import { ImageGen } from './imageGen';
+import { item } from './entities/item';
 declare module 'express-session' {
   interface SessionData {
     returnTo: string;
@@ -100,9 +102,28 @@ app.use(passport.session());
 
 
 // Handles whenever the root directory of the website is accessed.
-app.get("/", function(req: Request, res: Response) {
-  // Respond with Express
-  res.send("Hello world! Stay a while and listen!");
+app.get("/", async function(req: Request, res: Response) {
+
+  const fileText = await (await fsPromises.readFile("preview_definitions.json")).toString();
+  const previewPages = JSON.parse(fileText).homePreviews as Array<string>;
+
+  const previewValues = await Promise.all(previewPages.map(async (p) => 
+    {
+      const data = await pageMapper.getPreviewData(myDataSource, p);
+      return data;
+    }))
+
+  const previews = new Map(previewValues.map((v) => [v.page, v]));
+
+  const template = "<%~ includeFile('./main.eta', it) %>"
+
+  const it = { 
+    pageTemplate: "home.eta",
+    formatPrice: helpers.formatPrice,
+    previews: previews };
+
+  const rendered = Eta.render(template, it)
+  res.send(rendered);
 });
 
 app.use((req, res, next) => {
@@ -141,13 +162,16 @@ app.get("/products/:pid", async function(req: Request, res: Response) {
     res.sendStatus(404);
   }
 
+  const suggest = await helpers.getSuggestions(myDataSource, `${item.itemCategoryID}-${item.itemSubcategoryID}`, 3, item.generatedID);
+
   const translatedItem = Array.from(translateObject.toWebsiteObject([item]).values())[0];
   const it = { 
     gridItemClass: "halloween",
     pageTemplate: "product.eta",
     theme: translatedItem.Cat,
     formatPrice: helpers.formatPrice,
-    data: translatedItem };
+    data: translatedItem,
+    suggest: suggest};
 
   const rendered = Eta.render(template, it);
 
