@@ -7,6 +7,7 @@ import { DataSource } from 'typeorm';
 import { translateObject } from './data/translateToWebsiteObject';
 import Eta = require('eta');
 import { helpers } from './helpers';
+import { ImageGen } from './imageGen';
 
 export class pageMapper {
     static pathDef = "page_definitions";
@@ -24,16 +25,19 @@ export class pageMapper {
                 app.get(`/${page.page}`, async function(req: Request, res: Response) {
 
                     const template = "<%~ includeFile('./main.eta', it) %>"
+
+                    const bannerDataUri = page.bannerText ? await ImageGen.getBanner(page.bannerText) : null;
                   
                     const items = (await getItems.getItems(db, page.categories, page.itemTypes, page.tags));
                     const translatedItems = Array.from(translateObject.toWebsiteObject(items).values());
                     const it = { 
-                      banner: page.banner, 
+                      banner: bannerDataUri ?? page.banner, 
                       bannerAlt: page.bannerAlt, 
                       gridItemClass: page.gridItemClass,
                       pageTemplate: `${page.pageType}.eta`,
                       additionalClasses: [`${page.pageTheme}-grid-content`],
                       theme: page.pageTheme,
+                      description: page.themeDesc,
                       formatPrice: helpers.formatPrice,
                       data: translatedItems };
                   
@@ -67,6 +71,7 @@ export class pageMapper {
 class pageData {
     page: string;
     banner: string;
+    bannerText: string;
     bannerAlt: string; 
     gridItemClass: string;
     pageTheme: string;
