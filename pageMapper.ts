@@ -31,11 +31,6 @@ export class pageMapper {
                     continue;
                 }
                 
-                if(reqPageData.loadProducts) {
-                    const productsPageData = page as productsPageData;
-                    page.gridItemClass = productsPageData.gridItemClass ?? '';
-                }
-
                 const bannerDataUri = page.bannerText ? await ImageGen.getBanner(page.bannerText) : null;
                 page.banner = bannerDataUri ?? page.banner;
                 page.formatPrice = helpers.formatPrice;
