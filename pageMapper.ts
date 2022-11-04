@@ -33,7 +33,7 @@ export class pageMapper {
                 
                 if(reqPageData.loadProducts) {
                     const productsPageData = page as productsPageData;
-                    page.gridItemClass = productsPageData.gridItemClass ?? 'grid-item';
+                    page.gridItemClass = productsPageData.gridItemClass ?? '';
                 }
 
                 const bannerDataUri = page.bannerText ? await ImageGen.getBanner(page.bannerText) : null;
