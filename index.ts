@@ -13,7 +13,6 @@ import passport  = require( 'passport');
 import Eta = require('eta');
 import https = require('https');
 import fs = require("fs");
-import * as fsPromises from 'fs/promises';
 
 import {authRouter} from "./auth";
 import { items } from './admin/items';
@@ -21,7 +20,6 @@ import path = require('path');
 import { pageMapper } from './pageMapper';
 import { helpers } from './helpers';
 import { ImageGen } from './imageGen';
-import { item } from './entities/item';
 declare module 'express-session' {
   interface SessionData {
     returnTo: string;
@@ -100,32 +98,6 @@ passport.use(strategy);
 app.use(passport.initialize());
 app.use(passport.session());
 
-
-// Handles whenever the root directory of the website is accessed.
-app.get("/", async function(req: Request, res: Response) {
-
-  const fileText = await (await fsPromises.readFile("preview_definitions.json")).toString();
-  const previewPages = JSON.parse(fileText).homePreviews as Array<string>;
-
-  const previewValues = await Promise.all(previewPages.map(async (p) => 
-    {
-      const data = await pageMapper.getPreviewData(myDataSource, p);
-      return data;
-    }))
-
-  const previews = new Map(previewValues.map((v) => [v.page, v]));
-
-  const template = "<%~ includeFile('./main.eta', it) %>"
-
-  const it = { 
-    pageTemplate: "home.eta",
-    formatPrice: helpers.formatPrice,
-    previews: previews };
-
-  const rendered = Eta.render(template, it)
-  res.send(rendered);
-});
-
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.isAuthenticated();
     next();
@@ -153,52 +125,6 @@ app.get("/admin/edit", secured, async function(req: Request, res: Response) {
     res.send(await items.renderEditItem(myDataSource, Number(req.query.id)));
 });
 
-app.get("/products/:pid", async function(req: Request, res: Response) {
-  const template = "<%~ includeFile('./main.eta', it) %>"
-
-  const item = (await getItems.getItem(myDataSource, req.params.pid));
-
-  if(item == null) {
-    res.sendStatus(404);
-  }
-
-  const suggest = await helpers.getSuggestions(myDataSource, `${item.itemCategoryID}-${item.itemSubcategoryID}`, 3, item.generatedID);
-
-  const translatedItem = Array.from(translateObject.toWebsiteObject([item]).values())[0];
-  const it = { 
-    gridItemClass: "halloween",
-    pageTemplate: "product.eta",
-    theme: translatedItem.Cat,
-    formatPrice: helpers.formatPrice,
-    data: translatedItem,
-    suggest: suggest};
-
-  const rendered = Eta.render(template, it);
-
-  res.send(rendered);
-});
-
-app.get("/productsTest", async function(req: Request, res: Response) {
-
-  const template = "<%~ includeFile('./main.eta', it) %>"
-
-  const items = (await getItems.getItems(myDataSource, ["06-08"]));
-  const translatedItems = Array.from(translateObject.toWebsiteObject(items).values())[0];
-  const it = { 
-    banner: "title_graphic_halloween.png", 
-    bannerAlt: "Halloween Title Graphic", 
-    gridItemClass: "halloween",
-    pageTemplate: "product.eta",
-    theme: "halloween",
-    formatPrice: helpers.formatPrice,
-    data: translatedItems };
-
-  const rendered = Eta.render(template, it);
-
-  res.send(rendered);
-  
-})
-
 app.get("/admin/import", secured, async function(req: Request, res: Response) {
     const options = {
         host: 'www.sweet-dreams-boutique.com',
@@ -222,55 +148,6 @@ app.get("/admin/import", secured, async function(req: Request, res: Response) {
       }
       
       https.request(options, callback).end();});
-
-app.get("/items", async function(req: Request, res: Response) {
-
-    const catString = req.query.cats as string;
-    const cats = catString == null ? null as Array<string> : catString.split(',');
-    const itemTypeString = req.query.itemTypes as string;
-    const itemTypes = itemTypeString == null ? null as Array<string> : itemTypeString.split(',');
-    const tagString = req.query.tags as string;
-    const tags = tagString == null ? null as Array<string> : tagString.split(',');
-
-    const items = await getItems.getItems(myDataSource, cats, itemTypes, tags);
-    
-    const webItemsMap = translateObject.toWebsiteObject(items);
-
-    // Respond with Express
-    res.send(Object.fromEntries(webItemsMap));
-  });
-
-  app.get("/dynamicSample", async function(req: Request, res: Response) {
-
-    const catString = req.query.cats as string;
-    const cats = catString == null ? null as Array<string> : catString.split(',');
-    const itemTypeString = req.query.itemTypes as string;
-    const itemTypes = itemTypeString == null ? null as Array<string> : itemTypeString.split(',');
-    const tagString = req.query.tags as string;
-    const tags = tagString == null ? null as Array<string> : tagString.split(',');
-    const bannerDataUri = req.query.bannerText ? await ImageGen.getBanner(req.query.bannerText as string) : null;
-
-    const items = (await getItems.getItems(myDataSource, cats, itemTypes, tags));
-    
-    const webItemsMap = translateObject.toWebsiteObject(items);
-
-    const template = "<%~ includeFile('./main.eta', it) %>"
-                  
-    const translatedItems = Array.from(translateObject.toWebsiteObject(items).values());
-    const it = { 
-      banner: bannerDataUri ? bannerDataUri : `/${req.query.banner}`, 
-      bannerAlt: req.query.bannerAlt, 
-      gridItemClass: req.query.gridItemClass,
-      pageTemplate: `products.eta`,
-      additionalClasses: [`${req.query.pageTheme}-grid-content`],
-      theme: req.query.pageTheme,
-      formatPrice: helpers.formatPrice,
-      data: translatedItems };
-  
-    const rendered = Eta.render(template, it);
-  
-    res.send(rendered);
-  });
 
   if(fs.existsSync("key.pem")) {
     https

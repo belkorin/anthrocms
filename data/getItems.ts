@@ -1,5 +1,6 @@
 import { Brackets, DataSource } from "typeorm";
 import { item } from "../entities/item";
+import wait = require('wait-for-stuff');
 
 export class getItems {
     static async getItems(datasource: DataSource, catsWithSubcats?: string[], types: string[] = null, tags: string[] = null) : Promise<item[]> {

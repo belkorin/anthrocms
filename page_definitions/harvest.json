@@ -8,5 +8,6 @@
     "themeDesc" : "Autumn & Thanksgiving",
     "categories" : ["06-09"],
     "itemTypes" : [],
-    "tags" : []
+    "tags" : [],
+    "loadProducts" : true
 }

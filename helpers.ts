@@ -2,6 +2,7 @@ import { DataSource } from "typeorm";
 import { getItems } from "./data/getItems";
 import { translateObject } from "./data/translateToWebsiteObject";
 import { item } from "./entities/item";
+import wait = require('wait-for-stuff');
 
 export class helpers {
     static formatPrice(price : number) {
@@ -12,12 +13,28 @@ export class helpers {
             currencyDisplay:"narrowSymbol"
         });
     }
-    static async getSuggestions(db : DataSource, cat : string, howMany : number, itemToExclude? : number) {
-        const sameCatItems = await getItems.getItems(db, [cat]);
+
+    static getItem(db : DataSource, pid : string) {
+        const i = wait.for.promise(getItems.getItem(db, pid));
+
+        const item = Array.from(translateObject.toWebsiteObject([i]).values())[0];
+
+        return item;
+    }
+
+    static getItems(db : DataSource, catsWithSubcats?: string[], types: string[] = null, tags: string[] = null) {
+        const items = wait.for.promise(getItems.getItems(db, catsWithSubcats, types, tags));
+        const webItems = Array.from(translateObject.toWebsiteObject(items).values());
+        
+        return webItems;
+    }
+
+    static getAlsoLike(db : DataSource, howMany : number, itemToExclude? : number, catsWithSubcats?: string[], types: string[] = null, tags: string[] = null) {
+        const suggestionPageItems = wait.for.promise(getItems.getItems(db, catsWithSubcats, types, tags));
         const suggestedItems = new Array<item>();
-        while(suggestedItems.length < 3 && suggestedItems.length < sameCatItems.length) {
-            let index = Math.floor(Math.random() * sameCatItems.length);
-            let itm = sameCatItems[index];
+        while(suggestedItems.length < howMany && suggestedItems.length < suggestionPageItems.length) {
+            let index = Math.floor(Math.random() * suggestionPageItems.length);
+            let itm = suggestionPageItems[index];
             if(!suggestedItems.includes(itm) && itm.generatedID != itemToExclude) { //no duplicates!
                 suggestedItems.push(itm);
             }

@@ -1,6 +1,6 @@
-
+<% let items = it.getItems(it.categories, it.types, it.tags);%>
 <center><img src="<%=it.banner%>" class="hover-shadow" alt="<%=it.bannerAlt%>" style="width:50%"><br>
-<%~it.description%>
+<%~it.themeDesc%>
 </center>
 				<h3 style="text-shadow: 0px 0px 5px #acffc2;">Also, feel free to visit our <a href="https://www.ebay.com/usr/anthropomorph7">ebay shop</a>!</h3>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -15,7 +15,7 @@
 							<option value="Price">Price Low-to-High</option>
 							<option value="Reverse Price">Price High-to-Low</option>
 							<option value="Cat<%=it.theme%>">All <%=it.theme%></option>
-                            <% if(it.data.some(function(x) { return x.tags && x.tags.some(function(y) { return y == "glow"; })})) { %>
+                            <% if(items.some(function(x) { return x.tags && x.tags.some(function(y) { return y == "glow"; })})) { %>
 							<option value="CatGlow">Just Glow-in-the-Dark</option>
                             <%}%>
 						</select>
@@ -24,7 +24,7 @@
                                 
 				<div id="items">
                 <% let openGridRow = false; %>
-                <% it.data.forEach(function(item, index) { %>
+                <% items.forEach(function(item, index) { %>
                     <% if(index % 3 == 0) { %>
 		                <% if(openGridRow) {%>
                             </div>

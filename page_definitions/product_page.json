@@ -1,0 +1,7 @@
+{
+    "page": "product",
+    "pageTheme": "",
+    "pageType": "product",
+    "loadProducts": false,
+    "parameters": ["itemID"]
+}

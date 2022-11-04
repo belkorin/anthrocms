@@ -18,10 +18,12 @@ class websiteItem {
     price: number;
     Type: string;
     Cat: string;
+    CatNumber: string;
     tags: string[];
     Image: string;
     ImageFull: string;
     Link: string;
+    dbProductNumber: number;
 
     constructor(item: item) {
         const paddedCat = item.itemCategoryID.toString().padStart(2, "0");
@@ -35,10 +37,12 @@ class websiteItem {
         this.price = item.price;
         this.Type = item.itemType.typeName;
         this.Cat = item.itemSubCategory.subCatName;
+        this.CatNumber = `${paddedCat}-${paddedSubcat}`;
         this.tags = item.itemTags == null ? null : item.itemTags.map((x) => x.tagName);
         this.Image = `/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-thumb.png`;
         this.ImageFull = `/photos/cat_${paddedCat}-${paddedSubcat}/${this.id}-full.png`;
         this.Link = `/products/${this.id}`;
+        this.dbProductNumber = item.generatedID;
     }
 }
 /*

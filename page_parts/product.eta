@@ -1,21 +1,22 @@
+<% let item = it.getItem(it.parameters.itemID); %>
 <div class="thingabContainer">
-					<div class="thinga_<%=it.theme%>">
+					<div class="thinga_<%=item.Cat%>">
 						<!-- Images used to open the lightbox -->
 						<div class="row3">
-							<div class="column3" align="center"> <img src="<%=it.data.Image%>" onclick="openModal();currentSlide(1)" class="hover-shadow"> </div>
+							<div class="column3" align="center"> <img src="<%=item.Image%>" onclick="openModal();currentSlide(1)" class="hover-shadow"> </div>
 						</div>
 						<!-- The Modal/Lightbox -->
 						<div id="myModal" class="modal"> <span class="close cursor" onclick="closeModal()">&times;</span>
 							<div class="modal-content">
 								<div class="mySlides">
-									<div class="numbertext">1 / 1</div> <img src="<%=it.data.ImageFull%>" style="width:35%" class="imagecenter"> </div>
+									<div class="numbertext">1 / 1</div> <img src="<%=item.ImageFull%>" style="width:35%" class="imagecenter"> </div>
 								<!-- Next/previous controls --><a class="prev" onclick="plusSlides(-1)">&#10094;</a> <a class="next" onclick="plusSlides(1)">&#10095;</a>
 								<!-- Caption text -->
 								<div class="caption-container">
 									<p id="caption"></p>
 								</div>
 								<!-- Thumbnail image controls -->
-								<div class="column3"> <img class="demo" src="<%=it.data.Image%>" onclick="currentSlide(1)" alt="Image 1"> </div>
+								<div class="column3"> <img class="demo" src="<%=item.Image%>" onclick="currentSlide(1)" alt="Image 1"> </div>
 							</div>
 						</div>
 						<script>
@@ -76,11 +77,11 @@
 						}
 						</script>
 					</div>
-					<div class="thingb_<%=it.theme%>">
-						<h1 align="center"><%=it.data.Name%></h1>
-						<h5 align="center">Item #<%=it.data.id%></h5>
-						<p><%= (it.data.LongDescription && it.data.LongDescription.length > 0 ? it.data.LongDescription : it.data.Description) %></p>
-						<% if(it.data.tags.includes("glow")) { %>
+					<div class="thingb_<%=item.Cat%>">
+						<h1 align="center"><%=item.Name%></h1>
+						<h5 align="center">Item #<%=item.id%></h5>
+						<p><%= (item.LongDescription && item.LongDescription.length > 0 ? item.LongDescription : item.Description) %></p>
+						<% if(item.tags.includes("glow")) { %>
 <br>All of our glow-in-the-dark items are tested by being exposed to one full minute of natural sunlight. Exposure to other light sources may yield different results.
 <%}%>
 
@@ -89,8 +90,8 @@
 						<input type="hidden" name="hosted_button_id" value="PUW8P8N6B53L8">
 						<table>
 						<tr><td><input type="hidden" name="on0" value="Price + Shipping">Price + Shipping</td></tr><tr><td><select name="os0">
-							<option value="<%=it.formatPrice(it.data.price)%> item + $5.60 USPS first class parcel ="><%=it.formatPrice(it.data.price)%> item + $5.60 USPS first class parcel = <%=it.formatPrice(it.data.price+5.6)%> USD</option>
-							<option value="<%=it.formatPrice(it.data.price)%> item + $10.40 USPS small flat rate priority box ="><%=it.formatPrice(it.data.price)%> item + $10.40 USPS small flat rate priority box = <%=it.formatPrice(it.data.price+10.4)%> USD</option>
+							<option value="<%=it.formatPrice(item.price)%> item + $5.60 USPS first class parcel ="><%=it.formatPrice(item.price)%> item + $5.60 USPS first class parcel = <%=it.formatPrice(item.price+5.6)%> USD</option>
+							<option value="<%=it.formatPrice(item.price)%> item + $10.40 USPS small flat rate priority box ="><%=it.formatPrice(item.price)%> item + $10.40 USPS small flat rate priority box = <%=it.formatPrice(item.price+10.4)%> USD</option>
 						</select> </td></tr>
 						</table>
 						<input type="hidden" name="currency_code" value="USD">
@@ -109,7 +110,7 @@
 				<div id="shippingdetails"></div>
 								
 				
-				<div id="alsolike" class="alsolike_<%=it.theme%>"><%~ includeFile('./alsolike.eta', {formatPrice: it.formatPrice, gridItemClass: it.gridItemClass, data: it.suggest}) %></div>				
+				<div id="alsolike" class="alsolike_<%=item.Cat%>"><%~ includeFile('./alsolike.eta', {formatPrice: it.formatPrice, gridItemClass: item.Cat, data: it.getAlsoLike(item.dbProductNumber, [item.CatNumber])}) %></div>				
 				
 
 			</div>
