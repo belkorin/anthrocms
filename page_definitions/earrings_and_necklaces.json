@@ -2,7 +2,6 @@
     "bannerText" : "Earrings & Necklaces",
     "bannerAlt" : "Earrings & Necklaces Title Graphic",
     "page": "earrings_and_necklaces",
-    "useGenericGridClass" : true,
     "pageType" : "products",
     "themeDesc" : "In this page you can find all of our currently available earrings and necklaces.<br>It may get a little overwhelming as it starts to fill up, so why not try the sort or search functions to narrow down the options?<br>We hope you find something you like!",
     "categories" : [],

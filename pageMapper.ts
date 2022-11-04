@@ -117,7 +117,6 @@ class requiredPageData {
 }
 
 class productsPageData {
-        gridItemClass: string;
         categories?: string[]
         itemTypes?: string[]
         tags?: string[]
