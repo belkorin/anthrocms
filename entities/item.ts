@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable } from "typeorm"
+import { Entity, Column, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinTable, OneToMany } from "typeorm"
+import { imperfectItem } from "./imperfectItem";
 import { itemCategory } from "./itemCategory";
 import { itemSubCategory } from "./itemSubCategory";
 import { itemTag } from "./itemTag";
@@ -13,6 +14,8 @@ export class item {
     itemCategoryID: number;
     @Column()
     itemSubcategoryID: number;
+    @Column()
+    itemSecondarySubCategoryID?: number;
     @Column()
     itemID: number;
     @Column()
@@ -31,6 +34,11 @@ export class item {
     itemCategory: itemCategory;
     @ManyToOne(() => itemSubCategory, (itemSubCategory) => itemSubCategory.subCatID)
     itemSubCategory: itemSubCategory;
+    @ManyToOne(() => itemSubCategory, (itemSubCategory) => itemSubCategory.subCatID)
+    itemSecondarySubCategory: itemSubCategory;
+    @OneToMany(() => imperfectItem, (item) => item.parentItem, {cascade: true})
+    @JoinTable()
+    imperfectItems: imperfectItem[];
 
     @ManyToMany(() => itemTag, (tag) => tag.items)
     itemTags?: itemTag[];

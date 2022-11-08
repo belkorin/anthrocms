@@ -1,5 +1,7 @@
 import * as fsPromises from 'fs/promises'
 import { DataSource } from 'typeorm';
+import { translateObject } from './data/translateToWebsiteObject';
+import { imperfectItem } from './entities/imperfectItem';
 import { item } from './entities/item';
 import { itemCategory } from './entities/itemCategory';
 import { itemSubCategory } from './entities/itemSubCategory';
@@ -28,10 +30,12 @@ export class jsonImport {
     }
 
     static async parseJsonIntoDBFromText(db : DataSource, json : string) {
+        //jsonImport.initializeCategories(db);
+
         const obj = JSON.parse(json);
         const items = Object.keys(obj).map((k) => new itemModel(k, obj[k]));
 
-        const itemTypes = Array.from(new Set(items.map((i) => i.type)));
+        const itemTypes = Array.from(new Set(items.map((i) => Array.isArray(i.type) ? i.type[0] : i.type)));
         const itemTags = Array.from(new Set(items.flatMap((i) => i.cats)));
 
         const itemTypesTable = db.getRepository(itemType);
@@ -69,33 +73,65 @@ export class jsonImport {
 
         const itemsTable = db.getRepository(item);
 
-        const newItems = items.map((i) => new item({
-            itemCategoryID : i.catA,
-            itemSubcategoryID : i.catB,
-            inStock : true,
-            itemID : i.itemId,
-            name : i.name,
-            shortDescription : i.description,
-            longDescription : "",
-            price : i.price,
-            itemType : typeNameToTypeMap.get(i.type),
-            itemTags : i.cats.length > 0 ? i.cats.map((c) => tagNameToTagMap.get(c)) : null,
-            itemCategory : catMap.get(i.catA),
-            itemSubCategory : subMap.get(i.catB),
-        }));
+        const rollupItems = new Map<string, Array<itemModel>>();
+
+        items.forEach((i) => {
+            const idString = translateObject.toItemIDString(i.catID, i.subCatA, i.subCatB ?? 0, i.itemId, false);
+            if(!rollupItems.has(idString)) {
+                rollupItems.set(idString, new Array<itemModel>());
+            }
+
+            rollupItems.get(idString).push(i);
+         });
+
+        const newItems = Array.from(rollupItems).map((g) => { 
+            const i = g[1][0];
+            
+            const defects = g[1].filter((d) => d.imperfect).map((d) => new imperfectItem({
+                defectDescription: d.description,
+                inStock: true
+            }));
+
+            return new item({
+                itemCategoryID : i.catID,
+                itemSubcategoryID : i.subCatA,
+                itemSecondarySubCategoryID : i.subCatB,
+                inStock : true,
+                itemID : i.itemId,
+                name : i.name,
+                shortDescription : i.description,
+                longDescription : "",
+                price : i.price,
+                itemType : typeNameToTypeMap.get(i.type),
+                itemTags : i.cats.length > 0 ? i.cats.map((c) => tagNameToTagMap.get(c)) : null,
+                itemCategory : catMap.get(i.catID),
+                itemSubCategory : subMap.get(i.subCatA),
+                itemSecondarySubCategory: i.subCatB == null ? null : subMap.get(i.subCatB),
+                imperfectItems : defects.length > 0 ? defects : null
+            })
+        });
 
         await itemsTable.save(newItems);
 
-        const sample = await itemsTable.find({take: 10});
-        console.log(sample);
+        const queryBuilder = itemsTable.createQueryBuilder("item").where('1 = 1')
+        .leftJoinAndSelect("item.itemType", "itemType")
+        .leftJoinAndSelect("item.itemCategory", "itemCategory")
+        .leftJoinAndSelect("item.itemSubCategory", "itemSubCategory")
+        .leftJoinAndSelect("item.imperfectItems", "imperfectItems")
+        .leftJoinAndSelect("item.itemTags", "tags")
+        .take(10);
+
+        const sample = await queryBuilder.getMany();
+        console.log(translateObject.toWebsiteObject(sample));
     }
 
 }
 
 class itemModel {
     id : string;
-    catA : number;
-    catB : number;
+    catID : number;
+    subCatA : number;
+    subCatB? : number;
     itemId : number;
     name: string;
     description: string;
@@ -103,6 +139,7 @@ class itemModel {
     type: string;
     cat: string;
     cats: string[];
+    imperfect: boolean;
 
     constructor(id: string, item : any) {
         this.id = id;
@@ -110,14 +147,30 @@ class itemModel {
         this.description = item.Description;
         this.price = item.price;
         this.type = item.Type;
-        this.cat = item.Cat;
+        this.catID = item.Cat;
         this.cats = (item.Cats ?? new Array<string>());
         if(item.Cat != undefined)
             this.cats.push(item.Cat);
 
         let idParts = id.split(' ')[1].split('-');
-        this.catA = Number.parseInt(idParts[0]);
-        this.catB = Number.parseInt(idParts[1]);
-        this.itemId = Number.parseInt(idParts[2]);
+        this.catID = Number.parseInt(idParts[0]);
+        this.subCatA = Number.parseInt(idParts[1]);
+        let itemIdString = "";
+        
+        if(idParts.length > 3) {
+            this.subCatB = Number.parseInt(idParts[2]);
+            itemIdString = idParts[3];
+        }
+        else {
+            itemIdString = idParts[2];
+        }
+
+        this.imperfect = itemIdString.endsWith("D");
+
+        if(this.imperfect) {
+            itemIdString = itemIdString.replace("D", "");
+        }
+
+        this.itemId = Number.parseInt(itemIdString);
     }
 }

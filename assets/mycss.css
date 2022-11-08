@@ -558,7 +558,19 @@ h6 {
 	display: flow-root;
 }
 
-.harvest-grid-content {
+/* .harvest-grid-content {
+	border-color: #5a390f;
+	border-style: solid;
+	border-width: 5px;
+    background-color: #fec272;
+    padding: 10px;
+	float: center;
+	width: 100%;
+	text-align: center;
+	display: flow-root;
+} */
+
+#suggested-harvest .item {
 	border-color: #5a390f;
 	border-style: solid;
 	border-width: 5px;

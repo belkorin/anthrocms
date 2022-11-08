@@ -1,0 +1,56 @@
+{
+					"Item 09-05-03-007": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-007-thumb.png",
+						"Name": "Moon NiGHTS & Reala Glow Earrings",
+						"Description": "A pair of earrings featuring Halloween NiGHTS & Reala in front of harvest moons.",
+						"price": 5.00,
+						"Link": "products/09-05-03-007",
+						"Type": "earrings",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-008": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-008-thumb.png",
+						"Name": "Runners NiGHTS & Reala Glow Earrings",
+						"Description": "A pair of earrings featuring Halloween NiGHTS & Reala in the style of Sonic Runners.",
+						"price": 5.00,
+						"Link": "products/09-05-03-008",
+						"Type": "earrings",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-009": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-009-thumb.png",
+						"Name": "Claris & Elliot Glow Earrings",
+						"Description": "A pair of earrings featuring Halloween Claris & Elliot in the style of Puyopuyo.",
+						"price": 5.00,
+						"Link": "products/09-05-03-009",
+						"Type": "earrings",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-007D": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-007-thumb-D.png",
+						"Name": "IMPERFECT Moon NiGHTS & Reala Glow Earrings",
+						"Description": "An imperfect pair of earrings featuring Halloween NiGHTS & Reala in front of harvest moons.",
+						"price": 2.50,
+						"Link": "products/09-05-03-007D",
+						"Type": ["earrings", "imperfect"],
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-008D": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-008-thumb-D.png",
+						"Name": "IMPERFECT Runners NiGHTS & Reala Glow Earrings",
+						"Description": "An imperfect pair of earrings featuring Halloween NiGHTS & Reala in the style of Sonic Runners.",
+						"price": 2.50,
+						"Link": "products/09-05-03-008D",
+						"Type": ["earrings", "imperfect"],
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-009D": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-009-thumb-D.png",
+						"Name": "IMPERFECT Claris & Elliot Glow Earrings",
+						"Description": "An imperfect pair of earrings featuring Halloween Claris & Elliot in the style of Puyopuyo.",
+						"price": 2.50,
+						"Link": "products/09-05-03-009D",
+						"Type": ["earrings", "imperfect"],
+						"Cat": "nightshalloween"
+					}
+}

@@ -12,6 +12,7 @@ import Auth0Strategy  = require( 'passport-auth0');
 import passport  = require( 'passport');
 import Eta = require('eta');
 import https = require('https');
+import http = require('http');
 import fs = require("fs");
 
 import {authRouter} from "./auth";
@@ -125,11 +126,11 @@ app.get("/admin/edit", secured, async function(req: Request, res: Response) {
     res.send(await items.renderEditItem(myDataSource, Number(req.query.id)));
 });
 
-app.get("/admin/import", secured, async function(req: Request, res: Response) {
+app.get("/admin/import", async function(req: Request, res: Response) {
     const options = {
-        host: 'www.sweet-dreams-boutique.com',
+        host: 'localhost',
         path: `/${req.query.json}`,
-        
+        port: 3000
       };
       
      const callback = function(response) {
@@ -147,7 +148,7 @@ app.get("/admin/import", secured, async function(req: Request, res: Response) {
         });
       }
       
-      https.request(options, callback).end();});
+      http.request(options, callback).end();});
 
   if(fs.existsSync("key.pem")) {
     https

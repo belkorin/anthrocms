@@ -1,0 +1,56 @@
+{
+					"Item 09-05-03-001": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-001-thumb.png",
+						"Name": "Runners NiGHTS Glow Keycharm",
+						"Description": "A keycharm of Halloween NiGHTS in the style of Sonic Runners.",
+						"price": 5.00,
+						"Link": "products/09-05-03-001",
+						"Type": "keycharms",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-002": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-002-thumb.png",
+						"Name": "Runners Reala Glow Keycharm",
+						"Description": "A keycharm of Halloween Reala in the style of Sonic Runners.",
+						"price": 5.00,
+						"Link": "products/09-05-03-002",
+						"Type": "keycharms",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-003": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-003-thumb.png",
+						"Name": "Moon NiGHTS Glow Keycharm",
+						"Description": "A keycharm of Halloween NiGHTS in front of a harvest moon.",
+						"price": 5.00,
+						"Link": "products/09-05-03-003",
+						"Type": "keycharms",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-004": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-004-thumb.png",
+						"Name": "Moon Reala Glow Keycharm",
+						"Description": "A keycharm of Halloween Reala in front of a harvest moon.",
+						"price": 5.00,
+						"Link": "products/09-05-03-004",
+						"Type": "keycharms",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-005": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-005-thumb.png",
+						"Name": "Claris Glow Keycharm",
+						"Description": "A keycharm of Halloween Claris in the style of Puyopuyo.",
+						"price": 5.00,
+						"Link": "products/09-05-03-005",
+						"Type": "keycharms",
+						"Cat": "nightshalloween"
+					},
+					"Item 09-05-03-006": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_09-05-03/09-05-03-006-thumb.png",
+						"Name": "Elliot Glow Keycharm",
+						"Description": "A keycharm of Halloween NiGHTS in the style of Puyopuyo.",
+						"price": 5.00,
+						"Link": "products/09-05-03-006",
+						"Type": "keycharms",
+						"Cat": "nightshalloween"
+					}
+				}

@@ -10,6 +10,7 @@ export class getItems {
                                 .leftJoinAndSelect("item.itemType", "itemType")
                                 .leftJoinAndSelect("item.itemCategory", "itemCategory")
                                 .leftJoinAndSelect("item.itemSubCategory", "itemSubCategory")
+                                .leftJoinAndSelect("item.imperfectItems", "imperfectItems")
                                 .leftJoinAndSelect("item.itemTags", "tags");
         if(catsWithSubcats != null && catsWithSubcats.length > 0) {
             queryBuilder.andWhere(new Brackets((qb) => {
