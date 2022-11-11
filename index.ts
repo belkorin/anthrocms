@@ -19,7 +19,6 @@ import {authRouter} from "./auth";
 import { items } from './admin/items';
 import path = require('path');
 import { pageMapper } from './pageMapper';
-import { helpers } from './helpers';
 import { ImageGen } from './imageGen';
 declare module 'express-session' {
   interface SessionData {

@@ -1,7 +1,7 @@
 <div class="thinge_<%=it.pageTheme%>" align="center">
     <center><a href="/<%=it.page%>"><img src="<%=it.banner%>" class="hover-shadow" alt="<%=it.bannerAlt%>" style="width:50%"></a></center>
-    <h1 align="center" style="color: #000000; text-shadow: 0px 0px 5px #f59042;">Here are a few things from our <%~it.themeDesc%> selection.</h1>
+    <h1 align="center" style="color: #000000; text-shadow: 0px 0px 5px #f59042;">Here are a few things from our <%~it.shortDesc%> selection.</h1>
     <div id="suggested-<%=it.pageTheme%>" align="center">
-    <%~ includeFile('./alsolike.eta', {formatPrice: it.formatPrice, gridItemClass: it.gridItemClass, data: it.items }) %>
+    <%~ includeFile('./alsolike.eta', {formatPrice: it.utilities.formatPrice, gridItemClass: it.gridItemClass, data: it.previewItems }) %>
     </div>
 </div>

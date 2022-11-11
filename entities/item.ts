@@ -14,7 +14,9 @@ export class item {
     itemCategoryID: number;
     @Column()
     itemSubcategoryID: number;
-    @Column()
+    @Column({
+        nullable: true
+    })
     itemSecondarySubCategoryID?: number;
     @Column()
     itemID: number;
@@ -34,8 +36,10 @@ export class item {
     itemCategory: itemCategory;
     @ManyToOne(() => itemSubCategory, (itemSubCategory) => itemSubCategory.subCatID)
     itemSubCategory: itemSubCategory;
-    @ManyToOne(() => itemSubCategory, (itemSubCategory) => itemSubCategory.subCatID)
-    itemSecondarySubCategory: itemSubCategory;
+    @ManyToOne(() => itemSubCategory, (itemSubCategory) => itemSubCategory.subCatID, {
+        nullable: true
+    })
+    itemSecondarySubCategory?: itemSubCategory;
     @OneToMany(() => imperfectItem, (item) => item.parentItem, {cascade: true})
     @JoinTable()
     imperfectItems: imperfectItem[];

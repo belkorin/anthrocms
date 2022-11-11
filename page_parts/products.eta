@@ -1,6 +1,6 @@
-<% let items = it.getItems(it.categories, it.types, it.tags);%>
+<% let items = it.itemsApi.getItems(it.categories, it.types, it.tags);%>
 <center><img src="<%=it.banner%>" class="hover-shadow" alt="<%=it.bannerAlt%>" style="width:50%"><br>
-<%~it.themeDesc%>
+<%if(it.themeDesc) {%> <%~it.themeDesc%> <%}%>
 </center>
 				<h3 style="text-shadow: 0px 0px 5px #acffc2;">Also, feel free to visit our <a href="https://www.ebay.com/usr/anthropomorph7">ebay shop</a>!</h3>
 				<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
@@ -33,7 +33,7 @@
                         <div class="grid-row">
                         <% openGridRow = true; %>
 	                <%}%>
-                    <%~ includeFile('./product_card.eta', {formatPrice: it.formatPrice, gridItemClass: it.gridItemClass, data: item}) %>
+                    <%~ includeFile('./product_card.eta', {formatPrice: it.utilities.formatPrice, gridItemClass: it.gridItemClass, data: item}) %>
                 <%})%>
                 <% if(openGridRow) {%>
                     </div>

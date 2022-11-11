@@ -5,9 +5,9 @@
     "gridItemClass" : "halloween",
     "pageTheme" : "halloween",
     "pageType" : "products",
-    "themeDesc" : "Halloween",
+    "themeDesc" : "",
+    "shortDesc" : "Halloween",
     "categories" : ["06-08"],
     "itemTypes" : [],
-    "tags" : [],
-    "loadProducts" : true
+    "tags" : []
 }

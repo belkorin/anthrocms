@@ -1,4 +1,4 @@
-<% let item = it.getItem(it.parameters.itemID); %>
+<% let item = it.itemApi.getItem(it.parameters.itemID); %>
 <div class="thingabContainer">
 					<div class="thinga_<%=item.Cat%>">
 						<!-- Images used to open the lightbox -->
@@ -90,8 +90,8 @@
 						<input type="hidden" name="hosted_button_id" value="PUW8P8N6B53L8">
 						<table>
 						<tr><td><input type="hidden" name="on0" value="Price + Shipping">Price + Shipping</td></tr><tr><td><select name="os0">
-							<option value="<%=it.formatPrice(item.price)%> item + $5.60 USPS first class parcel ="><%=it.formatPrice(item.price)%> item + $5.60 USPS first class parcel = <%=it.formatPrice(item.price+5.6)%> USD</option>
-							<option value="<%=it.formatPrice(item.price)%> item + $10.40 USPS small flat rate priority box ="><%=it.formatPrice(item.price)%> item + $10.40 USPS small flat rate priority box = <%=it.formatPrice(item.price+10.4)%> USD</option>
+							<option value="<%=it.utilities.formatPrice(item.price)%> item + $5.60 USPS first class parcel ="><%=it.utilities.formatPrice(item.price)%> item + $5.60 USPS first class parcel = <%=it.utilities.formatPrice(item.price+5.6)%> USD</option>
+							<option value="<%=it.utilities.formatPrice(item.price)%> item + $10.40 USPS small flat rate priority box ="><%=it.utilities.formatPrice(item.price)%> item + $10.40 USPS small flat rate priority box = <%=it.utilities.formatPrice(item.price+10.4)%> USD</option>
 						</select> </td></tr>
 						</table>
 						<input type="hidden" name="currency_code" value="USD">
@@ -110,7 +110,7 @@
 				<div id="shippingdetails"></div>
 								
 				
-				<div id="alsolike" class="alsolike_<%=item.Cat%>"><%~ includeFile('./alsolike.eta', {formatPrice: it.formatPrice, gridItemClass: item.Cat, data: it.getAlsoLike(item.dbProductNumber, [item.CatNumber])}) %></div>				
+				<div id="alsolike" class="alsolike_<%=item.Cat%>"><%~ includeFile('./alsolike.eta', {formatPrice: it.utilities.formatPrice, gridItemClass: item.Cat, data: it.itemApi.getAlsoLike(item.dbProductNumber, [item.CatNumber])}) %></div>				
 				
 
 			</div>

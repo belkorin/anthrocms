@@ -1,6 +1,7 @@
+<%~ includeFile('./weekly_update.html') %>
 <%~it.mainText %>
 <% it.previewPages.forEach(function(p) { 
-let preview = it.getPreview(p);
+let preview = it.itemsApi.getPreviewData(p);
 %>
 <div id="preview<%=preview.theme%>>"><%~ includeFile('./preview.eta', preview) %></div>
 <br>

@@ -1,0 +1,83 @@
+{
+					"Item 06-09-001": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-001-thumb.png",
+						"Name": "Autumn Leaf earrings",
+						"Description": "A pair of autumn leaf earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-001",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-002": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-002-thumb.png",
+						"Name": "Acorn earrings",
+						"Description": "A pair of acorn earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-002",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-003": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-003-thumb.png",
+						"Name": "Apple earrings",
+						"Description": "A pair of apple earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-003",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-004": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-004-thumb.png",
+						"Name": "Cupcake earrings",
+						"Description": "A pair of festive cupcake earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-004",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-005": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-005-thumb.png",
+						"Name": "Pumpkin Pie earrings",
+						"Description": "A pair of pumpkin pie earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-005",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-006": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-006-thumb.png",
+						"Name": "Pumpkin Spice Coffee earrings",
+						"Description": "A pair of festive coffee cup earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-006",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-007": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-007-thumb.png",
+						"Name": "Candy Corn earrings",
+						"Description": "A pair of candy corn earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-007",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-008": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-008-thumb.png",
+						"Name": "Turkey earrings",
+						"Description": "A pair of festive turkey earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-008",
+						"Type": "earrings",
+						"Cat": "harvest"
+					},
+					"Item 06-09-009": {
+						"Image": "https://www.sweet-dreams-boutique.com/photos/cat_06-09/06-09-009-thumb.png",
+						"Name": "Cornucopia earrings",
+						"Description": "A pair of festive cornucopia earrings.",
+						"price": 5.00,
+						"Link": "https://www.sweet-dreams-boutique.com/products/06-09-009",
+						"Type": "earrings",
+						"Cat": "harvest"
+					}
+				}

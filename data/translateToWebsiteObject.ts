@@ -1,13 +1,21 @@
+import { websiteItem } from "../api/models/websiteItem";
 import { imperfectItem } from "../entities/imperfectItem";
 import { item } from "../entities/item";
 
 export class translateObject {
-    static toWebsiteObject(items : item[]) {
-        const webItems = items.flatMap((i) => new Array(new websiteItem(i), ...i.imperfectItems.map((x) => websiteItem.fromDefect(i, x))));
+    static toWebsiteObject(items : item[], appendDefects: boolean = true) {
+        const webItems = items.flatMap((i) => {
+            const defects = appendDefects ? i.imperfectItems.map((x) => websiteItemImpl.fromDefect(i, x)) : [];
+            return new Array(new websiteItemImpl(i), ...defects)
+        });
 
         const webItemsMap = new Map(webItems.map((i) => [`Item ${i.id}`, i]));
         
         return webItemsMap;
+    }
+
+    static getItemIDString(item : item) {
+        return this.toItemIDString(item.itemCategoryID, item.itemSubcategoryID, item.itemSecondarySubCategoryID ?? 0, item.itemID, false);
     }
 
     static toItemIDString(cat : number, subCat : number, subCatB : number, itemID : number, defect: boolean) {
@@ -29,7 +37,7 @@ export class translateObject {
     }
 }
 
-class websiteItem {
+class websiteItemImpl implements websiteItem {
     id : string;
     Name: string;
     Description: string;
@@ -41,6 +49,7 @@ class websiteItem {
     tags: string[];
     Image: string;
     ImageFull: string;
+    GalleryImages: string[];
     Link: string;
     dbProductNumber: number;
 
@@ -63,7 +72,7 @@ class websiteItem {
     }
 
     static fromDefect(item: item, defect : imperfectItem) {
-        const webItem = new websiteItem(item);
+        const webItem = new websiteItemImpl(item);
         webItem.id = translateObject.toItemIDString(item.itemCategoryID, item.itemSubcategoryID, item.itemSecondarySubCategoryID ?? 0, item.itemID, true);
         webItem.Description = defect.defectDescription;
         webItem.tags.push("imperfect");

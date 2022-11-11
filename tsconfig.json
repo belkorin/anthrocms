@@ -14,5 +14,12 @@
   },
   "exclude": [
       "node_modules"
-  ]
+  ],
+  "typedocOptions": {
+    "entryPoints": ["api/items.ts", "api/utilities.ts", "api/models/websiteItem.ts", "api/models/productListPage.ts"],
+    "out": "docs",
+    "readme": "none",
+    "sort": "source-order",
+    "disableSources": true
+  }
 }
