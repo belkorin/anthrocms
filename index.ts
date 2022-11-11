@@ -93,6 +93,7 @@ passport.serializeUser((user, done) => {
 
 app.use(expressSession(session));
 app.use(express.static('assets'));
+app.use('/docs', express.static('docs'));
 
 passport.use(strategy);
 app.use(passport.initialize());
