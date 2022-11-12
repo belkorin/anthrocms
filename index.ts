@@ -32,20 +32,6 @@ function controller(req: express.Request, res: express.Response) {
 
 //import { db } from './db';
 
-// establish database connection
-myDataSource
-    .initialize()
-    .then(async () => {
-        console.log("Data Source has been initialized!");
-
-        // const items = await getItems.getItems(myDataSource, null, null, null, ["glow", "halloween"]);
-        // console.log(items);
-        //await jsonImport.parseJsonIntoDB(myDataSource, "halloween_items.json");//jsonImport.initializeCategories(myDataSource);
-    })
-    .catch((err) => {
-        console.error("Error during Data Source initialization:", err)
-    })
-
 // Instantiating the Express object.
 const app: Express = express();
 
@@ -53,7 +39,18 @@ Eta.configure({
   views: path.join(__dirname, "page_parts")
 })
 
-app.use(helmet());
+const scriptSources = ["'self'", "'unsafe-inline'"];
+const styleSources = ["'self'", "'unsafe-inline'"];
+const connectSources = ["'self'"];
+
+app.use(helmet({contentSecurityPolicy: {directives: {
+  defaultSrc: ["'self'"],
+  scriptSrc: scriptSources,
+  scriptSrcElem: scriptSources,
+  scriptSrcAttr: scriptSources,
+  styleSrc: styleSources,
+  connectSrc: connectSources} } }));
+
 app.use(cors());
 
 const session = {
@@ -116,12 +113,14 @@ pageMapper.mapPages(myDataSource, app);
 
 app.use("/admin", authRouter);
 
-app.get("/admin/items", secured, async function(req: Request, res: Response) {
+//TODO: PUT AUTHENTICATION BACK
+
+app.get("/admin/items", async function(req: Request, res: Response) {
     //res.send(Eta.render('The answer to everything is <%= it.answer %>', { answer: 42 }));
     res.send(await items.renderGetItems(myDataSource));
 });
 
-app.get("/admin/edit", secured, async function(req: Request, res: Response) {
+app.get("/admin/edit", async function(req: Request, res: Response) {
     //res.send(Eta.render('The answer to everything is <%= it.answer %>', { answer: 42 }));
     res.send(await items.renderEditItem(myDataSource, Number(req.query.id)));
 });
@@ -150,6 +149,21 @@ app.get("/admin/import", async function(req: Request, res: Response) {
       
       http.request(options, callback).end();});
 
+// establish database connection
+myDataSource
+    .initialize()
+    .then(async () => {
+        console.log("Data Source has been initialized!");
+        startServer();
+        // const items = await getItems.getItems(myDataSource, null, null, null, ["glow", "halloween"]);
+        // console.log(items);
+        //await jsonImport.parseJsonIntoDB(myDataSource, "halloween_items.json");//jsonImport.initializeCategories(myDataSource);
+    })
+    .catch((err) => {
+        console.error("Error during Data Source initialization:", err)
+    })
+
+function startServer() {
   if(fs.existsSync("key.pem")) {
     https
     .createServer(
@@ -177,3 +191,4 @@ app.get("/admin/import", async function(req: Request, res: Response) {
         console.log("server is running on port 3000");
     });
   }
+}

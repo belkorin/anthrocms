@@ -3,15 +3,29 @@ import { item } from "../entities/item";
 import wait = require('wait-for-stuff');
 
 export class getItems {
-    static async getItems(datasource: DataSource, catsWithSubcats?: string[], types: string[] = null, tags: string[] = null) : Promise<item[]> {
-        const items = datasource.getRepository(item);
 
+    static _getQueryBuilder(datasource: DataSource) {
+        const items = datasource.getRepository(item);
         const queryBuilder = items.createQueryBuilder("item").where('1 = 1')
                                 .leftJoinAndSelect("item.itemType", "itemType")
                                 .leftJoinAndSelect("item.itemCategory", "itemCategory")
                                 .leftJoinAndSelect("item.itemSubCategory", "itemSubCategory")
                                 .leftJoinAndSelect("item.imperfectItems", "imperfectItems")
                                 .leftJoinAndSelect("item.itemTags", "tags");
+        return queryBuilder;
+    }
+
+    static async getItemByGeneratedID(datasource: DataSource, generatedID : number) {
+        const queryBuilder = this._getQueryBuilder(datasource);
+        queryBuilder.andWhere("item.generatedID = :id", {id: generatedID});
+
+        const item = await queryBuilder.getOne();
+        return item;
+    }
+
+    static async getItems(datasource: DataSource, catsWithSubcats?: string[], types: string[] = null, tags: string[] = null) : Promise<item[]> {
+        const queryBuilder = this._getQueryBuilder(datasource);
+
         if(catsWithSubcats != null && catsWithSubcats.length > 0) {
             queryBuilder.andWhere(new Brackets((qb) => {
                 let i = 0;
